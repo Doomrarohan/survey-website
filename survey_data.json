@@ -1,90 +1,95 @@
 {
   "title": "Media Industry Report 2025",
   "subtitle": "Breaking boundaries across media verticals",
-  "description": "Comprehensive survey across Gaming, Social Media, Streaming, Publishing, Advertising, and Music.",
+  "description": "Comprehensive survey across Gaming, Social Media, Streaming, Publishing, Advertising, and Music. Confidential \u2014 authorized access only.",
+  "password": "bain2025",
   "verticals": [
     {
       "id": "gaming",
       "name": "Gaming",
-      "icon": "🎮",
+      "icon": "\ud83c\udfae",
       "color": "#CC2936",
       "status": "live",
       "respondents": 399,
       "summary": "Cloud gaming, monetisation shifts, and the rise of indie studios are reshaping how players spend time and money.",
+      "exec_summary": {
+        "kpis": [
+          {"value": "399", "label": "Respondents"},
+          {"value": "5.7", "label": "Avg games played"},
+          {"value": "7 hrs", "label": "Avg weekly play"},
+          {"value": "1.4", "label": "Devices per gamer"}
+        ],
+        "insights": [
+          "Roblox leads as #1 most played game \u2014 16.5% rank it first, ahead of Fortnite (11.7%)",
+          "50% of 13-17 y.o. have played their top game for 2+ years \u2014 deep loyalty",
+          "Immersive gamers play 7.2 hrs/wk vs 6.3 for non-immersive \u2014 14% more engaged",
+          "Gameplay + friends are the top play drivers \u2014 graphics rank lower than social factors"
+        ]
+      },
       "blocks": [
         {
           "id": "game_variety",
           "heading": "Game variety",
           "subtitle": "Number of different games played in the last year",
-          "filters": {
-            "Split by": ["Age group", "Primary device", "Gamer type"]
-          },
+          "question": "Q37: In the last year, how many different games have you played?",
+          "takeaway": "25% of gamers play 10+ different games annually",
+          "filters": {"Split by": ["Age group", "Primary device", "Gamer type"]},
           "chart_views": {
             "Age group": {
-              "id": "gv_age",
-              "title": "Games played — by age group (%)",
-              "type": "stacked_bar",
+              "id": "gv_age", "title": "Games played \u2014 by age group (%)", "type": "stacked_bar",
               "labels": ["0","1","2","3","4","5","6","7","8","9","10+"],
               "datasets": [
-                { "label": "Age 2-12", "data": [0,5,8,14,12,17,9,3,4,1,26], "color": "#CC2936" },
-                { "label": "Age 13-17", "data": [0,6,11,14,10,16,7,2,9,2,22], "color": "#1B4965" }
+                {"label": "Age 2-12", "data": [0,5,8,14,12,17,9,3,4,1,26], "color": "#CC2936"},
+                {"label": "Age 13-17", "data": [0,6,11,14,10,16,7,2,9,2,22], "color": "#1B4965"}
               ],
               "note": "Average: 5.8 games (2-12 y.o.) vs 5.6 games (13-17 y.o.)"
             },
             "Primary device": {
-              "id": "gv_dev",
-              "title": "Games played — by primary device (#)",
-              "type": "stacked_bar",
+              "id": "gv_dev", "title": "Games played \u2014 by primary device (#)", "type": "stacked_bar",
               "labels": ["0","1","2","3","4","5","6","7","8","9","10+"],
               "datasets": [
-                { "label": "Console", "data": [0,3,14,19,13,29,13,3,12,4,50], "color": "#CC2936" },
-                { "label": "Mobile", "data": [1,10,11,15,15,24,9,4,6,1,22], "color": "#1B4965" },
-                { "label": "PC", "data": [0,1,1,9,5,4,2,1,1,0,6], "color": "#2D936C" },
-                { "label": "Multiple", "data": [0,3,4,6,5,4,2,1,2,1,11], "color": "#E07A2F" }
+                {"label": "Console", "data": [0,3,14,19,13,29,13,3,12,4,50], "color": "#CC2936"},
+                {"label": "Mobile", "data": [1,10,11,15,15,24,9,4,6,1,22], "color": "#1B4965"},
+                {"label": "PC", "data": [0,1,1,9,5,4,2,1,1,0,6], "color": "#2D936C"},
+                {"label": "Multiple", "data": [0,3,4,6,5,4,2,1,2,1,11], "color": "#E07A2F"}
               ],
               "note": "Console gamers skew toward 10+ games (avg 6.3 games)."
             },
             "Gamer type": {
-              "id": "gv_imm",
-              "title": "Games played — immersive vs non-immersive (%)",
-              "type": "stacked_bar",
+              "id": "gv_imm", "title": "Games played \u2014 immersive vs non-immersive (%)", "type": "stacked_bar",
               "labels": ["0","1","2","3","4","5","6","7","8","9","10+"],
               "datasets": [
-                { "label": "Immersive", "data": [0,5,9,14,10,18,8,2,7,2,23], "color": "#CC2936" },
-                { "label": "Non-Immersive", "data": [0,5,9,14,11,16,7,3,7,1,28], "color": "#7B2D8E" }
+                {"label": "Immersive", "data": [0,5,9,14,10,18,8,2,7,2,23], "color": "#CC2936"},
+                {"label": "Non-Immersive", "data": [0,5,9,14,11,16,7,3,7,1,28], "color": "#7B2D8E"}
               ],
-              "note": "Non-immersive gamers slightly more at 10+ (28% vs 23%)."
+              "note": "Non-immersive gamers slightly more concentrated at 10+ (28% vs 23%)."
             }
           }
         },
         {
           "id": "top_games",
           "heading": "Top games",
-          "subtitle": "Most frequently played games — ranked by preference",
-          "filters": {
-            "Split by": ["Rank distribution", "Device usage"]
-          },
+          "subtitle": "Most frequently played games ranked by preference",
+          "question": "Q38: List the 3 games that you currently play most often. Put your most played game first.",
+          "takeaway": "Roblox, Fortnite, Minecraft dominate the top 3",
+          "filters": {"Split by": ["Rank distribution", "Device usage"]},
           "chart_views": {
             "Rank distribution": {
-              "id": "tg_rank",
-              "title": "Top 10 games — rank distribution (% of respondents)",
-              "type": "horizontal_stacked",
+              "id": "tg_rank", "title": "Top 10 games \u2014 rank distribution (% of respondents)", "type": "horizontal_stacked",
               "labels": ["Roblox","Fortnite","Minecraft","PUBG","Call of Duty","Mobile Legend","EA FIFA/FC","Mario","Candy Crush","Free Fire"],
               "datasets": [
-                { "label": "Rank 1 (most played)", "data": [16.5,11.7,10.3,7.1,4.8,4.8,4.5,3.7,3.6,2.5], "color": "#CC2936" },
-                { "label": "Rank 2", "data": [9,9,13,5,4,3,5,4,4,1], "color": "#E07A2F" },
-                { "label": "Rank 3", "data": [5,5,10,3,3,1,5,5,4,3], "color": "#FBBF68" }
+                {"label": "Rank 1 (most played)", "data": [16.5,11.7,10.3,7.1,4.8,4.8,4.5,3.7,3.6,2.5], "color": "#CC2936"},
+                {"label": "Rank 2", "data": [9,9,13,5,4,3,5,4,4,1], "color": "#E07A2F"},
+                {"label": "Rank 3", "data": [5,5,10,3,3,1,5,5,4,3], "color": "#FBBF68"}
               ],
               "note": "Roblox leads Rank 1 at 16.5%, Fortnite 11.7%, Minecraft 10.3%."
             },
             "Device usage": {
-              "id": "tg_dev",
-              "title": "Top games — multi-device vs single-device (%)",
-              "type": "horizontal_stacked",
+              "id": "tg_dev", "title": "Top games \u2014 multi-device vs single-device (%)", "type": "horizontal_stacked",
               "labels": ["Call of Duty","PUBG","Fortnite","Roblox","Candy Crush","Minecraft","Mobile Legend","EA FIFA/FC","GTA","Free Fire"],
               "datasets": [
-                { "label": "Multi-device", "data": [56,39,36,36,36,32,30,26,24,12], "color": "#1B4965" },
-                { "label": "Single-device", "data": [44,61,64,64,64,68,70,74,76,88], "color": "#B0C4DE" }
+                {"label": "Multi-device", "data": [56,39,36,36,36,32,30,26,24,12], "color": "#1B4965"},
+                {"label": "Single-device", "data": [44,61,64,64,64,68,70,74,76,88], "color": "#B0C4DE"}
               ],
               "note": "Call of Duty highest multi-device (56%); Free Fire mostly single-device (88%)."
             }
@@ -94,30 +99,26 @@
           "id": "play_tenure",
           "heading": "Play tenure",
           "subtitle": "How long gamers have been playing their most frequent game",
-          "filters": {
-            "Split by": ["Age group", "By game"]
-          },
+          "question": "Q39: When did you first start playing [most frequent game]?",
+          "takeaway": "Older teens show significantly deeper game loyalty",
+          "filters": {"Split by": ["Age group", "By game"]},
           "chart_views": {
             "Age group": {
-              "id": "pt_age",
-              "title": "Play tenure — by age group (%)",
-              "type": "stacked_bar",
+              "id": "pt_age", "title": "Play tenure \u2014 by age group (%)", "type": "stacked_bar",
               "labels": ["<1 mo.", "1-2 mo.", "2-6 mo.", "6-12 mo.", "1-2 yrs", "2+ yrs"],
               "datasets": [
-                { "label": "Age 2-12", "data": [2,5,13,21,29,29], "color": "#CC2936" },
-                { "label": "Age 13-17", "data": [3,3,9,15,20,50], "color": "#1B4965" }
+                {"label": "Age 2-12", "data": [2,5,13,21,29,29], "color": "#CC2936"},
+                {"label": "Age 13-17", "data": [3,3,9,15,20,50], "color": "#1B4965"}
               ],
               "note": "50% of 13-17 y.o. playing 2+ years vs 29% of 2-12 y.o."
             },
             "By game": {
-              "id": "pt_game",
-              "title": "Top games — tenure breakdown (%)",
-              "type": "horizontal_stacked",
+              "id": "pt_game", "title": "Top games \u2014 tenure breakdown (%)", "type": "horizontal_stacked",
               "labels": ["Fortnite","Mobile Legend","Roblox","Call of Duty","EA FIFA/FC","GTA","Minecraft","Mario","Free Fire","Candy Crush"],
               "datasets": [
-                { "label": "2+ years", "data": [55,50,48,48,47,46,44,36,35,15], "color": "#7B2D8E" },
-                { "label": "6 mo - 2 years", "data": [36,42,37,39,44,46,36,33,52,69], "color": "#C4A3D9" },
-                { "label": "<6 months", "data": [9,8,14,12,9,8,18,27,8,12], "color": "#E8D8F0" }
+                {"label": "2+ years", "data": [55,50,48,48,47,46,44,36,35,15], "color": "#7B2D8E"},
+                {"label": "6 mo - 2 years", "data": [36,42,37,39,44,46,36,33,52,69], "color": "#C4A3D9"},
+                {"label": "<6 months", "data": [9,8,14,12,9,8,18,27,8,12], "color": "#E8D8F0"}
               ],
               "note": "Fortnite highest long-tenure (55% at 2+ yrs). Candy Crush only 15%."
             }
@@ -126,31 +127,27 @@
         {
           "id": "play_motivation",
           "heading": "Play motivation",
-          "subtitle": "Why gamers play their most frequent game — ranked reasons",
-          "filters": {
-            "Split by": ["Rank distribution", "Gamer type"]
-          },
+          "subtitle": "Why gamers play their most frequent game",
+          "question": "Q40: Why do you like to play [most frequent game]? Put 1-3 reasons with the first being most important.",
+          "takeaway": "Social factors rival pure gameplay quality",
+          "filters": {"Split by": ["Rank distribution", "Gamer type"]},
           "chart_views": {
             "Rank distribution": {
-              "id": "pm_rank",
-              "title": "Top reasons — rank distribution (%)",
-              "type": "horizontal_stacked",
+              "id": "pm_rank", "title": "Top reasons \u2014 rank distribution (%)", "type": "horizontal_stacked",
               "labels": ["Gameplay","Friends play it","Graphics/audio","Personalize (skins)","Immersive world","Characters I like","Game modes","Create content","New content updates","Cross-platform"],
               "datasets": [
-                { "label": "Rank 1", "data": [19,10,7,7,9,7,5,6,6,6], "color": "#2D936C" },
-                { "label": "Rank 2", "data": [11,11,9,11,7,7,7,6,6,6], "color": "#6BC4A0" },
-                { "label": "Rank 3", "data": [11,9,9,8,8,7,6,5,6,7], "color": "#B8E4D0" }
+                {"label": "Rank 1", "data": [19,10,7,7,9,7,5,6,6,6], "color": "#2D936C"},
+                {"label": "Rank 2", "data": [11,11,9,11,7,7,7,6,6,6], "color": "#6BC4A0"},
+                {"label": "Rank 3", "data": [11,9,9,8,8,7,6,5,6,7], "color": "#B8E4D0"}
               ],
               "note": "Gameplay is #1 (19% rank first), friends (10%), immersive world (9%)."
             },
             "Gamer type": {
-              "id": "pm_imm",
-              "title": "Immersive vs non-immersive — % citing each reason",
-              "type": "horizontal_stacked",
+              "id": "pm_imm", "title": "Immersive vs non-immersive \u2014 % citing each reason", "type": "horizontal_stacked",
               "labels": ["Gameplay","Friends play it","Personalize","Immersive world","Graphics/audio","Characters","New content","Create content","Multiplayer","Cross-platform","Game modes","Storyline"],
               "datasets": [
-                { "label": "Immersive", "data": [49,48,47,42,37,28,34,33,32,30,27,23], "color": "#2D936C" },
-                { "label": "Non-Immersive", "data": [58,43,31,27,44,40,26,22,24,25,33,28], "color": "#E07A2F" }
+                {"label": "Immersive", "data": [49,48,47,42,37,28,34,33,32,30,27,23], "color": "#2D936C"},
+                {"label": "Non-Immersive", "data": [58,43,31,27,44,40,26,22,24,25,33,28], "color": "#E07A2F"}
               ],
               "note": "Immersive gamers value personalization (+16pp) and immersive worlds (+15pp)."
             }
@@ -160,29 +157,25 @@
           "id": "time_consumption",
           "heading": "Time consumption",
           "subtitle": "Weekly hours spent on most frequent game",
-          "filters": {
-            "Split by": ["Age group", "Gamer type"]
-          },
+          "question": "Q41: In a typical week, how many hours do you play [most frequent game]?",
+          "takeaway": "Immersive gamers play 14% more hours weekly",
+          "filters": {"Split by": ["Age group", "Gamer type"]},
           "chart_views": {
             "Age group": {
-              "id": "tc_age",
-              "title": "Weekly hours — by age group (%)",
-              "type": "stacked_bar",
+              "id": "tc_age", "title": "Weekly hours \u2014 by age group (%)", "type": "stacked_bar",
               "labels": ["<2 hrs","2-5 hrs","6-10 hrs","11-20 hrs",">20 hrs"],
               "datasets": [
-                { "label": "Age 2-12", "data": [11,49,28,10,3], "color": "#CC2936" },
-                { "label": "Age 13-17", "data": [13,39,30,13,4], "color": "#1B4965" }
+                {"label": "Age 2-12", "data": [11,49,28,10,3], "color": "#CC2936"},
+                {"label": "Age 13-17", "data": [13,39,30,13,4], "color": "#1B4965"}
               ],
               "note": "13-17 y.o. play heavier: 17% at 11+ hrs/week vs 13% of 2-12 y.o."
             },
             "Gamer type": {
-              "id": "tc_imm",
-              "title": "Weekly hours — immersive vs non-immersive (%)",
-              "type": "stacked_bar",
+              "id": "tc_imm", "title": "Weekly hours \u2014 immersive vs non-immersive (%)", "type": "stacked_bar",
               "labels": ["<2 hrs","2-5 hrs","6-10 hrs","11-20 hrs",">20 hrs"],
               "datasets": [
-                { "label": "Immersive", "data": [9,43,32,13,4], "color": "#CC2936" },
-                { "label": "Non-Immersive", "data": [16,46,25,9,3], "color": "#7B2D8E" }
+                {"label": "Immersive", "data": [9,43,32,13,4], "color": "#CC2936"},
+                {"label": "Non-Immersive", "data": [16,46,25,9,3], "color": "#7B2D8E"}
               ],
               "note": "Immersive gamers: 49% play 6+ hrs/wk vs 37% non-immersive."
             }
@@ -191,20 +184,18 @@
         {
           "id": "devices",
           "heading": "Device usage",
-          "subtitle": "What devices gamers play on — multi-select",
-          "filters": {
-            "Split by": ["All devices"]
-          },
+          "subtitle": "What devices gamers play on",
+          "question": "Q42: What devices do you play [most frequent game] on?",
+          "takeaway": "PlayStation leads; multi-device gaming is rising",
+          "filters": {"Split by": ["All devices"]},
           "chart_views": {
             "All devices": {
-              "id": "dev_all",
-              "title": "Devices used for most frequent game (% of respondents)",
-              "type": "horizontal_stacked",
+              "id": "dev_all", "title": "Devices used for most frequent game (% of respondents)", "type": "horizontal_stacked",
               "labels": ["PlayStation","Tablet","Nintendo","Laptop","Smartphone","Desktop","Xbox","VR/XR","Other Handheld"],
               "datasets": [
-                { "label": "% of Respondents", "data": [29,27,17,17,14,12,12,4,1], "color": "#6B46C1" }
+                {"label": "% of Respondents", "data": [29,27,17,17,14,12,12,4,1], "color": "#6B46C1"}
               ],
-              "note": "n=894, 1,295 total mentions. PlayStation leads at 29%. Avg 1.4 devices per gamer."
+              "note": "Multi-select (n=894, 1,295 total mentions). Avg 1.4 devices per gamer."
             }
           }
         }
@@ -213,7 +204,7 @@
     {
       "id": "social_media",
       "name": "Social Media",
-      "icon": "📱",
+      "icon": "\ud83d\udcf1",
       "color": "#1B4965",
       "status": "placeholder",
       "respondents": null,
@@ -222,7 +213,7 @@
     {
       "id": "streaming",
       "name": "Streaming & OTT",
-      "icon": "📺",
+      "icon": "\ud83d\udcfa",
       "color": "#7B2D8E",
       "status": "placeholder",
       "respondents": null,
@@ -231,7 +222,7 @@
     {
       "id": "publishing",
       "name": "Publishing & Print",
-      "icon": "📚",
+      "icon": "\ud83d\udcda",
       "color": "#2D936C",
       "status": "placeholder",
       "respondents": null,
@@ -240,7 +231,7 @@
     {
       "id": "advertising",
       "name": "Advertising & Adtech",
-      "icon": "📢",
+      "icon": "\ud83d\udce2",
       "color": "#E07A2F",
       "status": "placeholder",
       "respondents": null,
@@ -249,7 +240,7 @@
     {
       "id": "music",
       "name": "Music & Audio",
-      "icon": "🎵",
+      "icon": "\ud83c\udfb5",
       "color": "#6B46C1",
       "status": "placeholder",
       "respondents": null,

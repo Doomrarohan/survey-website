@@ -3,61 +3,62 @@ import plotly.graph_objects as go
 import json
 from pathlib import Path
 
-# ═══════════════════════════════════════════
-# CONFIG
-# ═══════════════════════════════════════════
-st.set_page_config(
-    page_title="Media Industry Report 2025",
-    page_icon="🎬",
-    layout="wide",
-    initial_sidebar_state="collapsed",
-)
+st.set_page_config(page_title="Media Industry Report 2025", page_icon="🎬", layout="wide", initial_sidebar_state="collapsed")
 
-PALETTE = [
-    "#CC2936", "#1B4965", "#2D936C", "#E07A2F", "#7B2D8E",
-    "#6B46C1", "#D4526E", "#13A8BE", "#547AA5", "#C4A77D",
-]
+PALETTE = ["#CC2936","#1B4965","#2D936C","#E07A2F","#7B2D8E","#6B46C1","#D4526E","#13A8BE","#547AA5","#C4A77D"]
 
-# ═══════════════════════════════════════════
-# CSS
-# ═══════════════════════════════════════════
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap');
-#MainMenu {visibility:hidden} header {visibility:hidden} footer {visibility:hidden}
-.block-container {padding-top:0!important;max-width:1060px}
+#MainMenu{visibility:hidden}header{visibility:hidden}footer{visibility:hidden}
+.block-container{padding-top:0!important;max-width:1060px}
 
-.hero{background:#1a1a1a;padding:2.5rem 2rem 2rem;border-radius:0 0 16px 16px;margin:-1rem -1rem 1.5rem;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-50%;right:-15%;width:500px;height:500px;background:radial-gradient(circle,rgba(204,41,54,.15) 0%,transparent 70%);pointer-events:none}
-.hero-eyebrow{display:inline-block;background:#CC2936;color:#fff;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:3px;margin-bottom:.75rem;font-family:'DM Sans',sans-serif}
-.hero-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.6rem,4vw,2.5rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:.5rem;letter-spacing:-.5px}
-.hero-desc{color:rgba(255,255,255,.6);font-size:14px;max-width:620px;line-height:1.7;font-family:'DM Sans',sans-serif}
-.hero-stats{display:flex;gap:2rem;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.1);flex-wrap:wrap}
-.hero-stat-num{font-size:24px;font-weight:600;color:#fff;font-family:'DM Sans',sans-serif}
-.hero-stat-label{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px;font-family:'DM Sans',sans-serif}
+.bain-nav{background:#1a1a1a;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;border-radius:0 0 12px 12px;margin:-1rem -1rem 0 -1rem}
+.bain-logo{display:flex;align-items:center;gap:10px}
+.bain-logo-mark{width:30px;height:30px;background:#CC2936;border-radius:5px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:15px;font-family:'DM Sans',sans-serif}
+.bain-logo-text{color:#fff;font-size:15px;font-weight:500;font-family:'DM Sans',sans-serif}
+.bain-logo-text span{color:rgba(255,255,255,.4);font-weight:400;font-size:12px;margin-left:6px}
+.bain-auth{font-size:11px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:5px;font-family:'DM Sans',sans-serif}
+.bain-auth-dot{width:6px;height:6px;border-radius:50%;background:#a6e3a1}
 
-.placeholder-card{border:1px dashed #ccc;border-radius:12px;padding:20px;background:#fafafa;margin-bottom:8px}
-.placeholder-card .ph-hdr{display:flex;align-items:center;gap:10px;margin-bottom:6px}
-.placeholder-card .ph-icon{font-size:22px}
-.placeholder-card .ph-name{font-size:16px;font-weight:600;color:#212121;font-family:'DM Sans',sans-serif}
-.placeholder-card .ph-badge{font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;background:#FAEEDA;color:#854F0B;margin-left:auto}
-.placeholder-card .ph-sum{font-size:13px;color:#717171;line-height:1.6;font-family:'DM Sans',sans-serif}
+.hero{background:#1a1a1a;padding:20px 20px 18px;position:relative;overflow:hidden;margin:0 -1rem 1rem}
+.hero::before{content:'';position:absolute;top:-60%;right:-20%;width:500px;height:500px;background:radial-gradient(circle,rgba(204,41,54,.1) 0%,transparent 70%);pointer-events:none}
+.hero-ey{display:inline-block;background:#CC2936;color:#fff;font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;padding:4px 12px;border-radius:3px;margin-bottom:8px;font-family:'DM Sans',sans-serif}
+.hero-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:5px;letter-spacing:-.5px}
+.hero-desc{color:rgba(255,255,255,.5);font-size:13px;line-height:1.6;max-width:560px;font-family:'DM Sans',sans-serif}
 
-.block-card{border:1px solid #e8e8e8;border-radius:12px;padding:18px 20px;background:#fff;position:relative;height:100%}
-.block-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.06)}
-.block-bar{position:absolute;left:0;top:12px;bottom:12px;width:4px;border-radius:2px}
-.block-heading{font-size:16px;font-weight:600;color:#212121;margin-bottom:2px;font-family:'DM Sans',sans-serif;padding-left:10px}
-.block-subtitle{font-size:12px;color:#717171;margin-bottom:12px;line-height:1.5;font-family:'DM Sans',sans-serif;padding-left:10px}
+.exec-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#999;margin-bottom:10px;font-family:'DM Sans',sans-serif}
+.kpi-card{background:#f5f5f5;border-radius:10px;padding:14px 16px;text-align:center}
+.kpi-num{font-size:22px;font-weight:600;color:#212121;font-family:'DM Sans',sans-serif}
+.kpi-label{font-size:11px;color:#717171;text-transform:uppercase;letter-spacing:.5px;margin-top:2px;font-family:'DM Sans',sans-serif}
 
-.chart-note{font-size:11px;color:#717171;background:#f5f5f5;border-radius:6px;padding:8px 12px;margin-top:6px;line-height:1.5;font-family:'DM Sans',sans-serif}
+.insight-card{border-left:3px solid #CC2936;padding:8px 12px;background:#f9f9f9;border-radius:0 8px 8px 0;font-size:12px;color:#212121;line-height:1.5;font-family:'DM Sans',sans-serif}
 
-.section-label{font-size:12px;font-weight:600;color:#717171;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-family:'DM Sans',sans-serif}
+.block-card{border:1px solid #e8e8e8;border-radius:12px;padding:16px 18px;background:#fff;position:relative}
+.block-card:hover{box-shadow:0 3px 12px rgba(0,0,0,.05)}
+.block-bar{position:absolute;left:0;top:16px;bottom:16px;width:4px;border-radius:2px}
+.block-heading{font-size:15px;font-weight:600;color:#212121;padding-left:10px;margin-bottom:2px;font-family:'DM Sans',sans-serif}
+.block-subtitle{font-size:12px;color:#717171;padding-left:10px;margin-bottom:2px;line-height:1.4;font-family:'DM Sans',sans-serif}
+.block-question{font-size:11px;color:#999;padding-left:10px;margin-bottom:10px;font-style:italic;line-height:1.4;font-family:'DM Sans',sans-serif}
+.block-takeaway{font-size:12px;font-weight:500;color:#CC2936;margin-top:8px;padding-left:10px;font-family:'DM Sans',sans-serif}
+
+.chart-note{font-size:11px;color:#717171;background:#f5f5f5;border-radius:6px;padding:7px 10px;margin-top:4px;line-height:1.5;font-family:'DM Sans',sans-serif}
+
+.ph-card{border:1px dashed #ccc;border-radius:12px;padding:16px 18px;background:#fafafa;margin-bottom:8px}
+.ph-hdr{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.ph-icon{font-size:20px}
+.ph-name{font-size:15px;font-weight:600;color:#212121;font-family:'DM Sans',sans-serif}
+.ph-badge{font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;background:#FAEEDA;color:#854F0B;margin-left:auto;font-family:'DM Sans',sans-serif}
+.ph-sum{font-size:12px;color:#717171;line-height:1.6;font-family:'DM Sans',sans-serif}
+
+.pw-box{max-width:400px;margin:120px auto;text-align:center}
+.pw-logo{width:50px;height:50px;background:#CC2936;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:24px;font-family:'DM Sans',sans-serif;margin:0 auto 16px}
+.pw-title{font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:700;color:#212121;margin-bottom:4px}
+.pw-sub{font-size:13px;color:#717171;margin-bottom:20px;font-family:'DM Sans',sans-serif}
 </style>
 """, unsafe_allow_html=True)
 
-# ═══════════════════════════════════════════
-# LOAD DATA
-# ═══════════════════════════════════════════
+# ── LOAD DATA ──
 @st.cache_data
 def load_data():
     p = Path(__file__).parent / "survey_data.json"
@@ -65,43 +66,79 @@ def load_data():
         return json.load(f)
 
 DATA = load_data()
-verticals = DATA["verticals"]
 
-# ═══════════════════════════════════════════
-# HERO
-# ═══════════════════════════════════════════
+# ══════════════════════════════════════════
+# PASSWORD GATE
+# ══════════════════════════════════════════
+def check_password():
+    if "authenticated" not in st.session_state:
+        st.session_state.authenticated = False
+
+    if st.session_state.authenticated:
+        return True
+
+    st.markdown("""
+    <div class="pw-box">
+        <div class="pw-logo">B</div>
+        <div class="pw-title">Media Industry Report 2025</div>
+        <div class="pw-sub">This report is confidential. Enter the access code to continue.</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        pwd = st.text_input("Access code", type="password", key="pw_input", label_visibility="collapsed", placeholder="Enter access code...")
+        if st.button("Enter", use_container_width=True, type="primary"):
+            if pwd == DATA.get("password", "bain2025"):
+                st.session_state.authenticated = True
+                st.rerun()
+            else:
+                st.error("Incorrect access code. Please try again.")
+    return False
+
+if not check_password():
+    st.stop()
+
+# ── DATA ──
+verticals = DATA["verticals"]
 live_v = [v for v in verticals if v.get("status") == "live"]
 total_blocks = sum(len(v.get("blocks", [])) for v in live_v)
-total_resp = sum(v.get("respondents", 0) or 0 for v in live_v)
 
-st.markdown(f"""
-<div class="hero">
-    <div class="hero-eyebrow">Media Report 2025</div>
-    <div class="hero-title">{DATA['title']}</div>
-    <div class="hero-desc">{DATA['description']}</div>
-    <div class="hero-stats">
-        <div><div class="hero-stat-num">{len(verticals)}</div><div class="hero-stat-label">Media verticals</div></div>
-        <div><div class="hero-stat-num">{len(live_v)}</div><div class="hero-stat-label">Live datasets</div></div>
-        <div><div class="hero-stat-num">{total_blocks}</div><div class="hero-stat-label">Survey sections</div></div>
-        <div><div class="hero-stat-num">{total_resp:,}</div><div class="hero-stat-label">Respondents</div></div>
+# ══════════════════════════════════════════
+# NAV BAR
+# ══════════════════════════════════════════
+st.markdown("""
+<div class="bain-nav">
+    <div class="bain-logo">
+        <div class="bain-logo-mark">B</div>
+        <div class="bain-logo-text">Bain & Company<span>Media Report</span></div>
     </div>
+    <div class="bain-auth"><div class="bain-auth-dot"></div>Authenticated</div>
 </div>
 """, unsafe_allow_html=True)
 
+# ══════════════════════════════════════════
+# HERO
+# ══════════════════════════════════════════
+st.markdown(f"""
+<div class="hero">
+    <div class="hero-ey">Gamer Survey 2025</div>
+    <div class="hero-title">{DATA['title']}</div>
+    <div class="hero-desc">{DATA['description']}</div>
+</div>
+""", unsafe_allow_html=True)
 
-# ═══════════════════════════════════════════
+# ══════════════════════════════════════════
 # CHART BUILDER
-# ═══════════════════════════════════════════
+# ══════════════════════════════════════════
 def build_chart(ch, height=350):
     is_horiz = "horizontal" in ch.get("type", "")
     fig = go.Figure()
     for i, ds in enumerate(ch["datasets"]):
         color = ds.get("color", PALETTE[i % len(PALETTE)])
         kw = dict(
-            name=ds["label"],
-            marker_color=color,
-            marker_line_color="white",
-            marker_line_width=0.5,
+            name=ds["label"], marker_color=color,
+            marker_line_color="white", marker_line_width=0.5,
             text=[f"{v}%" if v > 0 else "" for v in ds["data"]],
             textposition="inside",
             textfont=dict(size=9, color="white", family="DM Sans"),
@@ -119,27 +156,25 @@ def build_chart(ch, height=350):
         plot_bgcolor="white", paper_bgcolor="white",
         bargap=0.25, bargroupgap=0.1,
     )
-    tick_s = dict(gridwidth=0.5, tickfont=dict(size=10, color="#717171", family="DM Sans"))
+    ts = dict(gridwidth=0.5, tickfont=dict(size=10, color="#717171", family="DM Sans"))
     if is_horiz:
-        fig.update_xaxes(gridcolor="#f0f0f0", **tick_s)
-        fig.update_yaxes(autorange="reversed", gridcolor="white", **tick_s)
+        fig.update_xaxes(gridcolor="#f0f0f0", **ts)
+        fig.update_yaxes(autorange="reversed", gridcolor="white", **ts)
     else:
-        fig.update_xaxes(gridcolor="white", **tick_s)
-        fig.update_yaxes(gridcolor="#f0f0f0", **tick_s)
+        fig.update_xaxes(gridcolor="white", **ts)
+        fig.update_yaxes(gridcolor="#f0f0f0", **ts)
     return fig
 
-
-# ═══════════════════════════════════════════
+# ══════════════════════════════════════════
 # RENDER VERTICALS
-# ═══════════════════════════════════════════
+# ══════════════════════════════════════════
 for vi, vert in enumerate(verticals):
     is_live = vert.get("status") == "live"
     color = vert.get("color", "#666")
 
     if not is_live:
-        # Placeholder card — not expandable
         st.markdown(f"""
-        <div class="placeholder-card">
+        <div class="ph-card">
             <div class="ph-hdr">
                 <span class="ph-icon">{vert['icon']}</span>
                 <span class="ph-name">{vert['name']}</span>
@@ -150,21 +185,36 @@ for vi, vert in enumerate(verticals):
         """, unsafe_allow_html=True)
         continue
 
-    # Live vertical — expandable
+    # ── LIVE VERTICAL ──
     blocks = vert.get("blocks", [])
-    block_count = len(blocks)
-
     with st.expander(
-        f"{vert['icon']}  {vert['name']}  —  {vert.get('respondents','—')} respondents  ·  {block_count} sections",
+        f"{vert['icon']}  {vert['name']}  —  {vert.get('respondents','—')} respondents  ·  {len(blocks)} sections",
         expanded=(vi == 0),
     ):
-        st.markdown(
-            f'<div style="font-size:13px;color:#717171;margin-bottom:20px;line-height:1.6;'
-            f'font-family:DM Sans,sans-serif;">{vert["summary"]}</div>',
-            unsafe_allow_html=True,
-        )
+        # Executive summary
+        exec_data = vert.get("exec_summary")
+        if exec_data:
+            st.markdown('<div class="exec-label">Executive summary</div>', unsafe_allow_html=True)
 
-        # Render blocks 2 per row
+            kpi_cols = st.columns(len(exec_data.get("kpis", [])))
+            for col, kpi in zip(kpi_cols, exec_data.get("kpis", [])):
+                col.markdown(
+                    f'<div class="kpi-card"><div class="kpi-num">{kpi["value"]}</div>'
+                    f'<div class="kpi-label">{kpi["label"]}</div></div>',
+                    unsafe_allow_html=True,
+                )
+
+            st.markdown("<div style='height:10px'></div>", unsafe_allow_html=True)
+
+            insight_cols = st.columns(2)
+            for idx, insight in enumerate(exec_data.get("insights", [])):
+                with insight_cols[idx % 2]:
+                    st.markdown(f'<div class="insight-card">{insight}</div>', unsafe_allow_html=True)
+
+            st.markdown("<div style='height:16px'></div>", unsafe_allow_html=True)
+            st.markdown("---")
+
+        # ── BLOCKS (2 per row) ──
         for bi in range(0, len(blocks), 2):
             cols = st.columns(2)
             for j, col in enumerate(cols):
@@ -173,24 +223,24 @@ for vi, vert in enumerate(verticals):
                     break
                 block = blocks[idx]
                 with col:
-                    # Block card header
+                    # Block header
+                    question_text = block.get("question", "")
                     st.markdown(
                         f'<div class="block-card">'
                         f'<div class="block-bar" style="background:{color}"></div>'
                         f'<div class="block-heading">{block["heading"]}</div>'
                         f'<div class="block-subtitle">{block["subtitle"]}</div>'
+                        f'<div class="block-question">{question_text}</div>'
                         f'</div>',
                         unsafe_allow_html=True,
                     )
 
-                    # Dropdown filter for this block
+                    # Dropdown
                     views = block.get("chart_views", {})
                     view_names = list(views.keys())
-
                     if len(view_names) > 1:
                         selected_view = st.selectbox(
-                            "Split by",
-                            view_names,
+                            "Split by", view_names,
                             key=f"sel_{vert['id']}_{block['id']}",
                             label_visibility="collapsed",
                         )
@@ -212,21 +262,17 @@ for vi, vert in enumerate(verticals):
                         )
 
                         if ch.get("note"):
-                            st.markdown(
-                                f'<div class="chart-note">{ch["note"]}</div>',
-                                unsafe_allow_html=True,
-                            )
+                            st.markdown(f'<div class="chart-note">{ch["note"]}</div>', unsafe_allow_html=True)
 
-        st.markdown("")  # spacing
+                    # Takeaway
+                    takeaway = block.get("takeaway", "")
+                    if takeaway:
+                        st.markdown(f'<div class="block-takeaway">{takeaway}</div>', unsafe_allow_html=True)
 
-
-# ═══════════════════════════════════════════
-# FOOTER
-# ═══════════════════════════════════════════
+# ── FOOTER ──
 st.markdown("---")
 st.markdown(
     '<div style="text-align:center;font-size:12px;color:#999;padding:.5rem 0;font-family:DM Sans,sans-serif;">'
-    'Media Industry Report 2025 — Edit <code>survey_data.json</code> to update. '
-    'Push to GitHub to redeploy.</div>',
+    'Media Industry Report 2025 &mdash; Bain & Company &mdash; Confidential</div>',
     unsafe_allow_html=True,
 )
