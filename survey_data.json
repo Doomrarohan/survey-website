@@ -1,196 +1,498 @@
 {
-  "title": "Gaming Report 2025",
-  "subtitle": "Breaking boundaries to win",
-  "description": "Bain's annual Video Game Consumption Survey — young gamers aged 2-17 across 399 respondents. Explore by age group, gamer type, device, and more.",
+  "title": "Media Industry Report 2025",
+  "subtitle": "Breaking boundaries across media verticals",
+  "description": "Comprehensive survey across Gaming, Social Media, Streaming, Publishing, Advertising, and Music. Explore insights by vertical, age group, device, and more.",
   "sample": { "total": 399, "age_2_12": 270, "age_13_17": 129, "immersive": 511, "non_immersive": 383 },
-  "agendas": [
+  "verticals": [
     {
-      "id": "q37",
-      "name": "Q37: Games Played in Last Year",
+      "id": "gaming",
+      "name": "Gaming",
       "icon": "🎮",
       "color": "#CC2936",
-      "summary": "How many different games have respondents played? Distribution by age group and device.",
-      "charts": [
+      "status": "live",
+      "respondents": 399,
+      "summary": "Cloud gaming, monetisation shifts, and the rise of indie studios are reshaping how players spend time and money.",
+      "key_findings": [
+        "Roblox leads as #1 most played game (16.5% rank it first)",
+        "50% of 13-17 y.o. have played their top game for 2+ years",
+        "Immersive gamers play 7.2 hrs/week vs 6.3 for non-immersive",
+        "Gameplay and social connection are the top reasons for playing"
+      ],
+      "agendas": [
         {
-          "id": "q37_age",
-          "title": "Number of games played — by age group",
-          "type": "stacked_bar",
-          "labels": ["0","1","2","3","4","5","6","7","8","9","10+"],
-          "datasets": [
-            { "label": "Age 2-12", "data": [0,5,8,14,12,17,9,3,4,1,26], "color": "#CC2936" },
-            { "label": "Age 13-17", "data": [0,6,11,14,10,16,7,2,9,2,22], "color": "#1B4965" }
-          ],
-          "note": "% of respondents. Average: 5.8 games (2-12 y.o.) vs 5.6 games (13-17 y.o.)"
+          "id": "q37",
+          "name": "Q37: Games Played in Last Year",
+          "summary": "How many different games have respondents played? Distribution by age group and device.",
+          "charts": [
+            {
+              "id": "q37_age",
+              "title": "Number of games played — by age group",
+              "type": "stacked_bar",
+              "labels": ["0","1","2","3","4","5","6","7","8","9","10+"],
+              "datasets": [
+                { "label": "Age 2-12", "data": [0,5,8,14,12,17,9,3,4,1,26], "color": "#CC2936" },
+                { "label": "Age 13-17", "data": [0,6,11,14,10,16,7,2,9,2,22], "color": "#1B4965" }
+              ],
+              "note": "% of respondents. Average: 5.8 games (2-12 y.o.) vs 5.6 games (13-17 y.o.)"
+            },
+            {
+              "id": "q37_device",
+              "title": "Number of games — by primary device (# respondents)",
+              "type": "stacked_bar",
+              "labels": ["0","1","2","3","4","5","6","7","8","9","10+"],
+              "datasets": [
+                { "label": "Console", "data": [0,3,14,19,13,29,13,3,12,4,50], "color": "#CC2936" },
+                { "label": "Mobile", "data": [1,10,11,15,15,24,9,4,6,1,22], "color": "#1B4965" },
+                { "label": "PC", "data": [0,1,1,9,5,4,2,1,1,0,6], "color": "#2D936C" },
+                { "label": "Multiple", "data": [0,3,4,6,5,4,2,1,2,1,11], "color": "#E07A2F" }
+              ],
+              "note": "# of respondents by device. Console gamers skew toward 10+ games (avg 6.3 games)."
+            },
+            {
+              "id": "q37_imm",
+              "title": "Games played — immersive vs non-immersive",
+              "type": "stacked_bar",
+              "labels": ["0","1","2","3","4","5","6","7","8","9","10+"],
+              "datasets": [
+                { "label": "Immersive", "data": [0,5,9,14,10,18,8,2,7,2,23], "color": "#CC2936" },
+                { "label": "Non-Immersive", "data": [0,5,9,14,11,16,7,3,7,1,28], "color": "#7B2D8E" }
+              ],
+              "note": "% of respondents. Non-immersive gamers slightly more concentrated at 10+ (28% vs 23%)."
+            }
+          ]
         },
         {
-          "id": "q37_device",
-          "title": "Number of games — by primary device (# respondents)",
-          "type": "stacked_bar",
-          "labels": ["0","1","2","3","4","5","6","7","8","9","10+"],
-          "datasets": [
-            { "label": "Console", "data": [0,3,14,19,13,29,13,3,12,4,50], "color": "#CC2936" },
-            { "label": "Mobile", "data": [1,10,11,15,15,24,9,4,6,1,22], "color": "#1B4965" },
-            { "label": "PC", "data": [0,1,1,9,5,4,2,1,1,0,6], "color": "#2D936C" },
-            { "label": "Multiple", "data": [0,3,4,6,5,4,2,1,2,1,11], "color": "#E07A2F" }
-          ],
-          "note": "# of respondents by device. Console gamers skew toward 10+ games (avg 6.3 games)."
+          "id": "q38",
+          "name": "Q38: Top Games Played",
+          "summary": "Which games are played most often? Rankings across Rank 1, 2, and 3 picks.",
+          "charts": [
+            {
+              "id": "q38_ranks",
+              "title": "Top 10 games — rank distribution (% of respondents)",
+              "type": "horizontal_stacked",
+              "labels": ["Roblox","Fortnite","Minecraft","PUBG","Call of Duty","Mobile Legend","EA FIFA/FC","Mario","Candy Crush","Free Fire"],
+              "datasets": [
+                { "label": "Rank 1 (most played)", "data": [16.5,11.7,10.3,7.1,4.8,4.8,4.5,3.7,3.6,2.5], "color": "#CC2936" },
+                { "label": "Rank 2", "data": [9,9,13,5,4,3,5,4,4,1], "color": "#E07A2F" },
+                { "label": "Rank 3", "data": [5,5,10,3,3,1,5,5,4,3], "color": "#FBBF68" }
+              ],
+              "note": "Roblox leads Rank 1 at 16.5%, followed by Fortnite (11.7%) and Minecraft (10.3%)."
+            },
+            {
+              "id": "q38_device",
+              "title": "Top games — multi-device vs single-device players (%)",
+              "type": "horizontal_stacked",
+              "labels": ["Call of Duty","PUBG","Fortnite","Roblox","Candy Crush","Minecraft","Mobile Legend","EA FIFA/FC","Grand Theft Auto","Free Fire"],
+              "datasets": [
+                { "label": "Multi-device", "data": [56,39,36,36,36,32,30,26,24,12], "color": "#1B4965" },
+                { "label": "Single-device", "data": [44,61,64,64,64,68,70,74,76,88], "color": "#B0C4DE" }
+              ],
+              "note": "Call of Duty has highest multi-device rate (56%); Free Fire is mostly single-device (88%)."
+            }
+          ]
         },
         {
-          "id": "q37_imm",
-          "title": "Games played — immersive vs non-immersive",
-          "type": "stacked_bar",
-          "labels": ["0","1","2","3","4","5","6","7","8","9","10+"],
-          "datasets": [
-            { "label": "Immersive", "data": [0,5,9,14,10,18,8,2,7,2,23], "color": "#CC2936" },
-            { "label": "Non-Immersive", "data": [0,5,9,14,11,16,7,3,7,1,28], "color": "#7B2D8E" }
-          ],
-          "note": "% of respondents. Non-immersive gamers slightly more concentrated at 10+ (28% vs 23%)."
+          "id": "q39",
+          "name": "Q39: When Started Playing",
+          "summary": "How long have gamers been playing their most frequent game?",
+          "charts": [
+            {
+              "id": "q39_age",
+              "title": "Play tenure — by age group (%)",
+              "type": "stacked_bar",
+              "labels": ["<1 mo.", "1-2 mo.", "2-6 mo.", "6-12 mo.", "1-2 yrs", "2+ yrs"],
+              "datasets": [
+                { "label": "Age 2-12", "data": [2,5,13,21,29,29], "color": "#CC2936" },
+                { "label": "Age 13-17", "data": [3,3,9,15,20,50], "color": "#1B4965" }
+              ],
+              "note": "50% of 13-17 y.o. have been playing 2+ years vs 29% of 2-12 y.o."
+            },
+            {
+              "id": "q39_game",
+              "title": "Top games — play tenure breakdown (%)",
+              "type": "horizontal_stacked",
+              "labels": ["Fortnite","Mobile Legend","Roblox","Call of Duty","EA FIFA/FC","GTA","Minecraft","Mario","Free Fire","Candy Crush"],
+              "datasets": [
+                { "label": "2+ years", "data": [55,50,48,48,47,46,44,36,35,15], "color": "#7B2D8E" },
+                { "label": "6 mo - 2 years", "data": [36,42,37,39,44,46,36,33,52,69], "color": "#C4A3D9" },
+                { "label": "<6 months", "data": [9,8,14,12,9,8,18,27,8,12], "color": "#E8D8F0" }
+              ],
+              "note": "Fortnite has highest long-tenure base (55% playing 2+ yrs). Candy Crush skews newer (only 15%)."
+            }
+          ]
+        },
+        {
+          "id": "q40",
+          "name": "Q40: Reasons for Playing",
+          "summary": "Why do gamers play their most frequent game?",
+          "charts": [
+            {
+              "id": "q40_ranks",
+              "title": "Top reasons — rank distribution (% of respondents)",
+              "type": "horizontal_stacked",
+              "labels": ["Gameplay","Friends play it","Graphics/audio","Personalize (skins)","Immersive world","Characters I like","Game modes","Create content","New content updates","Cross-platform"],
+              "datasets": [
+                { "label": "Rank 1", "data": [19,10,7,7,9,7,5,6,6,6], "color": "#2D936C" },
+                { "label": "Rank 2", "data": [11,11,9,11,7,7,7,6,6,6], "color": "#6BC4A0" },
+                { "label": "Rank 3", "data": [11,9,9,8,8,7,6,5,6,7], "color": "#B8E4D0" }
+              ],
+              "note": "Gameplay is #1 (19% rank it first), friends (10%), immersive world (9%)."
+            },
+            {
+              "id": "q40_imm",
+              "title": "Immersive vs non-immersive — % citing each reason",
+              "type": "horizontal_stacked",
+              "labels": ["Gameplay","Friends play it","Personalize","Immersive world","Graphics/audio","Characters","New content","Create content","Multiplayer","Cross-platform","Game modes","Storyline"],
+              "datasets": [
+                { "label": "Immersive", "data": [49,48,47,42,37,28,34,33,32,30,27,23], "color": "#2D936C" },
+                { "label": "Non-Immersive", "data": [58,43,31,27,44,40,26,22,24,25,33,28], "color": "#E07A2F" }
+              ],
+              "note": "Immersive gamers value personalization (+16pp) and immersive worlds (+15pp)."
+            }
+          ]
+        },
+        {
+          "id": "q41",
+          "name": "Q41: Hours Per Week",
+          "summary": "Weekly time spent on most frequent game.",
+          "charts": [
+            {
+              "id": "q41_age",
+              "title": "Weekly hours — by age group (%)",
+              "type": "stacked_bar",
+              "labels": ["<2 hrs","2-5 hrs","6-10 hrs","11-20 hrs",">20 hrs"],
+              "datasets": [
+                { "label": "Age 2-12", "data": [11,49,28,10,3], "color": "#CC2936" },
+                { "label": "Age 13-17", "data": [13,39,30,13,4], "color": "#1B4965" }
+              ],
+              "note": "13-17 y.o. play heavier: 17% play 11+ hrs/week vs 13% of 2-12 y.o. Average ~7 hrs/week."
+            },
+            {
+              "id": "q41_imm",
+              "title": "Weekly hours — immersive vs non-immersive (%)",
+              "type": "stacked_bar",
+              "labels": ["<2 hrs","2-5 hrs","6-10 hrs","11-20 hrs",">20 hrs"],
+              "datasets": [
+                { "label": "Immersive", "data": [9,43,32,13,4], "color": "#CC2936" },
+                { "label": "Non-Immersive", "data": [16,46,25,9,3], "color": "#7B2D8E" }
+              ],
+              "note": "Immersive gamers play more: 49% play 6+ hrs/wk vs 37% non-immersive."
+            }
+          ]
+        },
+        {
+          "id": "q42",
+          "name": "Q42: Devices Used",
+          "summary": "Multi-select device usage across consoles, mobile, PC, VR, and handhelds.",
+          "charts": [
+            {
+              "id": "q42_all",
+              "title": "Devices used for most frequent game (% of respondents)",
+              "type": "horizontal_stacked",
+              "labels": ["PlayStation","Tablet","Nintendo","Laptop","Smartphone","Desktop","Xbox","VR/XR","Other Handheld"],
+              "datasets": [
+                { "label": "% of Respondents", "data": [29,27,17,17,14,12,12,4,1], "color": "#6B46C1" }
+              ],
+              "note": "Multi-select (n=894, 1,295 total mentions). PlayStation leads at 29%. Avg 1.4 devices per gamer."
+            }
+          ]
         }
       ]
     },
     {
-      "id": "q38",
-      "name": "Q38: Top Games Played",
-      "icon": "🏆",
-      "color": "#1B4965",
-      "summary": "Which games are played most often? Rankings across Rank 1, 2, and 3 picks.",
-      "charts": [
-        {
-          "id": "q38_ranks",
-          "title": "Top 10 games — rank distribution (% of respondents)",
-          "type": "horizontal_stacked",
-          "labels": ["Roblox","Fortnite","Minecraft","PUBG","Call of Duty","Mobile Legend","EA FIFA/FC","Mario","Candy Crush","Free Fire"],
-          "datasets": [
-            { "label": "Rank 1 (most played)", "data": [16.5,11.7,10.3,7.1,4.8,4.8,4.5,3.7,3.6,2.5], "color": "#CC2936" },
-            { "label": "Rank 2", "data": [9,9,13,5,4,3,5,4,4,1], "color": "#E07A2F" },
-            { "label": "Rank 3", "data": [5,5,10,3,3,1,5,5,4,3], "color": "#FBBF68" }
-          ],
-          "note": "Roblox leads Rank 1 at 16.5%, followed by Fortnite (11.7%) and Minecraft (10.3%)."
-        },
-        {
-          "id": "q38_device",
-          "title": "Top games — multi-device vs single-device players (%)",
-          "type": "horizontal_stacked",
-          "labels": ["Call of Duty","PUBG","Fortnite","Roblox","Candy Crush","Minecraft","Mobile Legend","EA FIFA/FC","Grand Theft Auto","Free Fire"],
-          "datasets": [
-            { "label": "Multi-device", "data": [56,39,36,36,36,32,30,26,24,12], "color": "#1B4965" },
-            { "label": "Single-device", "data": [44,61,64,64,64,68,70,74,76,88], "color": "#B0C4DE" }
-          ],
-          "note": "Call of Duty has highest multi-device rate (56%); Free Fire is mostly single-device (88%)."
-        }
-      ]
-    },
-    {
-      "id": "q39",
-      "name": "Q39: When Started Playing",
-      "icon": "📅",
-      "color": "#7B2D8E",
-      "summary": "How long have gamers been playing their most frequent game? Tenure by age and game title.",
-      "charts": [
-        {
-          "id": "q39_age",
-          "title": "Play tenure — by age group (%)",
-          "type": "stacked_bar",
-          "labels": ["<1 mo.", "1-2 mo.", "2-6 mo.", "6-12 mo.", "1-2 yrs", "2+ yrs"],
-          "datasets": [
-            { "label": "Age 2-12", "data": [2,5,13,21,29,29], "color": "#CC2936" },
-            { "label": "Age 13-17", "data": [3,3,9,15,20,50], "color": "#1B4965" }
-          ],
-          "note": "50% of 13-17 y.o. have been playing 2+ years vs 29% of 2-12 y.o."
-        },
-        {
-          "id": "q39_game",
-          "title": "Top games — play tenure breakdown (%)",
-          "type": "horizontal_stacked",
-          "labels": ["Fortnite","Mobile Legend","Roblox","Call of Duty","EA FIFA/FC","GTA","Minecraft","Mario","Free Fire","Candy Crush"],
-          "datasets": [
-            { "label": "2+ years", "data": [55,50,48,48,47,46,44,36,35,15], "color": "#7B2D8E" },
-            { "label": "6 mo - 2 years", "data": [36,42,37,39,44,46,36,33,52,69], "color": "#C4A3D9" },
-            { "label": "<6 months", "data": [9,8,14,12,9,8,18,27,8,12], "color": "#E8D8F0" }
-          ],
-          "note": "Fortnite has highest long-tenure base (55% playing 2+ yrs). Candy Crush skews newer (only 15%)."
-        }
-      ]
-    },
-    {
-      "id": "q40",
-      "name": "Q40: Reasons for Playing",
-      "icon": "❤️",
-      "color": "#2D936C",
-      "summary": "Why do gamers play their most frequent game? Ranked reasons by design, social, brand, and platform.",
-      "charts": [
-        {
-          "id": "q40_ranks",
-          "title": "Top reasons — rank distribution (% of respondents)",
-          "type": "horizontal_stacked",
-          "labels": ["Gameplay","Friends play it","Graphics/audio","Personalize (skins)","Immersive world","Characters I like","Game modes","Create content","New content updates","Cross-platform"],
-          "datasets": [
-            { "label": "Rank 1", "data": [19,10,7,7,9,7,5,6,6,6], "color": "#2D936C" },
-            { "label": "Rank 2", "data": [11,11,9,11,7,7,7,6,6,6], "color": "#6BC4A0" },
-            { "label": "Rank 3", "data": [11,9,9,8,8,7,6,5,6,7], "color": "#B8E4D0" }
-          ],
-          "note": "Gameplay is #1 (19% rank it first), friends (10%), immersive world (9%)."
-        },
-        {
-          "id": "q40_imm",
-          "title": "Immersive vs non-immersive — % citing each reason (any rank)",
-          "type": "horizontal_stacked",
-          "labels": ["Gameplay","Friends play it","Personalize","Immersive world","Graphics/audio","Characters","New content","Create content","Multiplayer","Cross-platform","Game modes","Storyline"],
-          "datasets": [
-            { "label": "Immersive", "data": [49,48,47,42,37,28,34,33,32,30,27,23], "color": "#2D936C" },
-            { "label": "Non-Immersive", "data": [58,43,31,27,44,40,26,22,24,25,33,28], "color": "#E07A2F" }
-          ],
-          "note": "Immersive gamers value personalization (+16pp) and immersive worlds (+15pp). Non-immersive prioritize gameplay (+9pp) and characters (+12pp)."
-        }
-      ]
-    },
-    {
-      "id": "q41",
-      "name": "Q41: Hours Per Week",
-      "icon": "⏱️",
-      "color": "#E07A2F",
-      "summary": "Weekly time spent on most frequent game. Broken down by age and gamer type.",
-      "charts": [
-        {
-          "id": "q41_age",
-          "title": "Weekly hours — by age group (%)",
-          "type": "stacked_bar",
-          "labels": ["<2 hrs","2-5 hrs","6-10 hrs","11-20 hrs",">20 hrs"],
-          "datasets": [
-            { "label": "Age 2-12", "data": [11,49,28,10,3], "color": "#CC2936" },
-            { "label": "Age 13-17", "data": [13,39,30,13,4], "color": "#1B4965" }
-          ],
-          "note": "13-17 y.o. play heavier: 17% play 11+ hrs/week vs 13% of 2-12 y.o. Average ~7 hrs/week."
-        },
-        {
-          "id": "q41_imm",
-          "title": "Weekly hours — immersive vs non-immersive (%)",
-          "type": "stacked_bar",
-          "labels": ["<2 hrs","2-5 hrs","6-10 hrs","11-20 hrs",">20 hrs"],
-          "datasets": [
-            { "label": "Immersive", "data": [9,43,32,13,4], "color": "#CC2936" },
-            { "label": "Non-Immersive", "data": [16,46,25,9,3], "color": "#7B2D8E" }
-          ],
-          "note": "Immersive gamers play more: 49% play 6+ hrs/wk vs 37% non-immersive. Avg 7.2 vs 6.3 hrs."
-        }
-      ]
-    },
-    {
-      "id": "q42",
-      "name": "Q42: Devices Used",
+      "id": "social_media",
+      "name": "Social Media",
       "icon": "📱",
-      "color": "#6B46C1",
-      "summary": "Multi-select device usage across consoles, mobile, PC, VR, and handhelds.",
-      "charts": [
+      "color": "#1B4965",
+      "status": "placeholder",
+      "respondents": null,
+      "summary": "Platform usage, creator economy, algorithm-driven content discovery, and social commerce trends.",
+      "key_findings": [
+        "Data collection in progress — placeholder section",
+        "Expected coverage: platform time spent, content creation, social commerce",
+        "Demographic splits: age, geography, creator vs consumer"
+      ],
+      "agendas": [
         {
-          "id": "q42_all",
-          "title": "Devices used for most frequent game (% of respondents)",
-          "type": "horizontal_stacked",
-          "labels": ["PlayStation","Tablet","Nintendo","Laptop","Smartphone","Desktop","Xbox","VR/XR","Other Handheld"],
-          "datasets": [
-            { "label": "% of Respondents", "data": [29,27,17,17,14,12,12,4,1], "color": "#6B46C1" }
-          ],
-          "note": "Multi-select (n=894, 1,295 total mentions). PlayStation leads at 29%. Avg 1.4 devices per gamer."
+          "id": "sm_platforms",
+          "name": "Platform Usage & Time Spent",
+          "summary": "Daily active usage across TikTok, Instagram, YouTube, Snapchat, and emerging platforms.",
+          "charts": [
+            {
+              "id": "sm_platform_time",
+              "title": "Daily time spent by platform — placeholder",
+              "type": "horizontal_stacked",
+              "labels": ["TikTok","YouTube","Instagram","Snapchat","X (Twitter)","Facebook","BeReal","Other"],
+              "datasets": [
+                { "label": "Age 13-17", "data": [45,40,30,25,10,5,8,5], "color": "#1B4965" },
+                { "label": "Age 18-24", "data": [40,45,35,15,15,10,5,8], "color": "#547AA5" }
+              ],
+              "note": "⚠️ PLACEHOLDER DATA — Minutes per day. Actual survey data to be added."
+            }
+          ]
+        },
+        {
+          "id": "sm_creators",
+          "name": "Creator Economy",
+          "summary": "Content creation rates, monetisation, and platform preferences among young creators.",
+          "charts": [
+            {
+              "id": "sm_creator_pct",
+              "title": "% who create content — by platform — placeholder",
+              "type": "horizontal_stacked",
+              "labels": ["TikTok","YouTube","Instagram","Snapchat","X (Twitter)"],
+              "datasets": [
+                { "label": "Create regularly", "data": [18,12,15,10,5], "color": "#1B4965" },
+                { "label": "Create occasionally", "data": [25,20,22,15,8], "color": "#89B4FA" }
+              ],
+              "note": "⚠️ PLACEHOLDER DATA — Actual survey data to be added."
+            }
+          ]
+        },
+        {
+          "id": "sm_commerce",
+          "name": "Social Commerce",
+          "summary": "Purchasing behaviour driven by social media recommendations and in-app shopping.",
+          "charts": [
+            {
+              "id": "sm_commerce_rate",
+              "title": "Purchase influenced by social media — placeholder",
+              "type": "stacked_bar",
+              "labels": ["Clothing","Beauty","Tech","Food","Gaming","Books"],
+              "datasets": [
+                { "label": "Bought via social", "data": [35,28,20,18,15,8], "color": "#1B4965" },
+                { "label": "Discovered but bought elsewhere", "data": [25,22,30,20,20,15], "color": "#B0C4DE" }
+              ],
+              "note": "⚠️ PLACEHOLDER DATA — % of respondents. Actual data to be added."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "streaming",
+      "name": "Streaming & OTT",
+      "icon": "📺",
+      "color": "#7B2D8E",
+      "status": "placeholder",
+      "respondents": null,
+      "summary": "Ad-supported tiers, password-sharing crackdowns, live sports licensing, and content ROI across platforms.",
+      "key_findings": [
+        "Data collection in progress — placeholder section",
+        "Expected coverage: platform subscriptions, churn, content preferences",
+        "Splits: SVOD vs AVOD vs FAST, age groups, geography"
+      ],
+      "agendas": [
+        {
+          "id": "str_subs",
+          "name": "Subscription & Platform Mix",
+          "summary": "Number of subscriptions, platform preferences, and ad-tier adoption.",
+          "charts": [
+            {
+              "id": "str_subs_count",
+              "title": "Number of streaming subscriptions — placeholder",
+              "type": "stacked_bar",
+              "labels": ["0","1","2","3","4","5+"],
+              "datasets": [
+                { "label": "Age 18-24", "data": [5,15,30,25,15,10], "color": "#7B2D8E" },
+                { "label": "Age 25-34", "data": [3,10,25,30,20,12], "color": "#C4A3D9" }
+              ],
+              "note": "⚠️ PLACEHOLDER DATA — % of respondents. Actual data to be added."
+            }
+          ]
+        },
+        {
+          "id": "str_content",
+          "name": "Content Preferences & ROI",
+          "summary": "Which content types drive the most engagement and retention?",
+          "charts": [
+            {
+              "id": "str_content_type",
+              "title": "Content type by engagement — placeholder",
+              "type": "horizontal_stacked",
+              "labels": ["Scripted Drama","Reality/Unscripted","Live Sports","Documentaries","Anime","Kids Content"],
+              "datasets": [
+                { "label": "Watch weekly", "data": [40,35,30,20,25,15], "color": "#7B2D8E" },
+                { "label": "Watch monthly", "data": [25,20,15,25,15,10], "color": "#C4A3D9" }
+              ],
+              "note": "⚠️ PLACEHOLDER DATA — Actual data to be added."
+            }
+          ]
+        },
+        {
+          "id": "str_churn",
+          "name": "Churn & Retention",
+          "summary": "What drives subscribers to cancel, pause, or switch platforms?",
+          "charts": [
+            {
+              "id": "str_churn_reasons",
+              "title": "Top reasons for cancelling — placeholder",
+              "type": "horizontal_stacked",
+              "labels": ["Too expensive","Not enough content","Finished a show","Using friend's account","Switched to competitor","Too many ads"],
+              "datasets": [
+                { "label": "% citing as reason", "data": [45,30,28,20,18,15], "color": "#7B2D8E" }
+              ],
+              "note": "⚠️ PLACEHOLDER DATA — Actual data to be added."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "publishing",
+      "name": "Publishing & Print",
+      "icon": "📚",
+      "color": "#2D936C",
+      "status": "placeholder",
+      "respondents": null,
+      "summary": "Digital-first titles, AI content disruption, audiobook growth, and subscription bundling strategies.",
+      "key_findings": [
+        "Data collection in progress — placeholder section",
+        "Expected coverage: format preferences, reading habits, discovery channels",
+        "Splits: digital vs print vs audio, age groups, genre"
+      ],
+      "agendas": [
+        {
+          "id": "pub_format",
+          "name": "Format Preferences",
+          "summary": "Print vs digital vs audiobook consumption patterns.",
+          "charts": [
+            {
+              "id": "pub_format_age",
+              "title": "Preferred reading format by age — placeholder",
+              "type": "stacked_bar",
+              "labels": ["13-17","18-24","25-34","35-44","45+"],
+              "datasets": [
+                { "label": "Physical book", "data": [30,25,35,40,50], "color": "#2D936C" },
+                { "label": "E-book", "data": [25,35,30,30,25], "color": "#6BC4A0" },
+                { "label": "Audiobook", "data": [20,25,20,15,10], "color": "#B8E4D0" }
+              ],
+              "note": "⚠️ PLACEHOLDER DATA — Actual data to be added."
+            }
+          ]
+        },
+        {
+          "id": "pub_discovery",
+          "name": "Discovery & Purchase Channels",
+          "summary": "How readers find and buy books — social media, recommendations, bookstores.",
+          "charts": [
+            {
+              "id": "pub_disc_channel",
+              "title": "Book discovery channels — placeholder",
+              "type": "horizontal_stacked",
+              "labels": ["TikTok/BookTok","Friend recommendation","Bookstore browsing","Amazon algorithm","Author follow","Podcast mention"],
+              "datasets": [
+                { "label": "Age 13-24", "data": [35,30,15,25,10,8], "color": "#2D936C" },
+                { "label": "Age 25+", "data": [10,25,30,35,20,15], "color": "#B8E4D0" }
+              ],
+              "note": "⚠️ PLACEHOLDER DATA — Actual data to be added."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "advertising",
+      "name": "Advertising & Adtech",
+      "icon": "📢",
+      "color": "#E07A2F",
+      "status": "placeholder",
+      "respondents": null,
+      "summary": "Cookie deprecation impact, retail media networks, CTV growth, and AI-driven creative production.",
+      "key_findings": [
+        "Data collection in progress — placeholder section",
+        "Expected coverage: ad recall, format effectiveness, privacy attitudes",
+        "Splits: channel, age, brand marketer vs consumer perspective"
+      ],
+      "agendas": [
+        {
+          "id": "ad_recall",
+          "name": "Ad Recall & Effectiveness",
+          "summary": "Which ad formats and placements are most effective at driving recall?",
+          "charts": [
+            {
+              "id": "ad_recall_format",
+              "title": "Ad recall by format — placeholder",
+              "type": "horizontal_stacked",
+              "labels": ["Short-form video","Influencer/sponsored","Display banner","Pre-roll video","Podcast ad","In-game ad"],
+              "datasets": [
+                { "label": "High recall", "data": [40,35,10,25,20,15], "color": "#E07A2F" },
+                { "label": "Some recall", "data": [25,25,20,20,20,20], "color": "#FBBF68" }
+              ],
+              "note": "⚠️ PLACEHOLDER DATA — Actual data to be added."
+            }
+          ]
+        },
+        {
+          "id": "ad_privacy",
+          "name": "Privacy & Targeting Attitudes",
+          "summary": "Consumer sentiment on data tracking, personalised ads, and privacy regulations.",
+          "charts": [
+            {
+              "id": "ad_privacy_sentiment",
+              "title": "Attitude toward personalised ads — placeholder",
+              "type": "stacked_bar",
+              "labels": ["13-17","18-24","25-34","35-44","45+"],
+              "datasets": [
+                { "label": "Prefer personalised", "data": [30,35,40,35,25], "color": "#E07A2F" },
+                { "label": "Neutral", "data": [40,35,30,30,30], "color": "#FBBF68" },
+                { "label": "Prefer no tracking", "data": [30,30,30,35,45], "color": "#FEF2E7" }
+              ],
+              "note": "⚠️ PLACEHOLDER DATA — Actual data to be added."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "music",
+      "name": "Music & Audio",
+      "icon": "🎵",
+      "color": "#6B46C1",
+      "status": "placeholder",
+      "respondents": null,
+      "summary": "Streaming royalties, AI composition, live event economics, and podcast growth.",
+      "key_findings": [
+        "Data collection in progress — placeholder section",
+        "Expected coverage: listening habits, platform loyalty, live event attendance",
+        "Splits: streaming vs vinyl vs live, age, genre preference"
+      ],
+      "agendas": [
+        {
+          "id": "mus_platforms",
+          "name": "Listening Platforms & Habits",
+          "summary": "Platform market share and daily listening time.",
+          "charts": [
+            {
+              "id": "mus_platform_share",
+              "title": "Primary music platform — placeholder",
+              "type": "horizontal_stacked",
+              "labels": ["Spotify","Apple Music","YouTube Music","Amazon Music","SoundCloud","Other"],
+              "datasets": [
+                { "label": "Primary platform", "data": [35,20,25,8,7,5], "color": "#6B46C1" },
+                { "label": "Also use", "data": [15,15,20,10,10,10], "color": "#C4A3D9" }
+              ],
+              "note": "⚠️ PLACEHOLDER DATA — Actual data to be added."
+            }
+          ]
+        },
+        {
+          "id": "mus_live",
+          "name": "Live Events & Concerts",
+          "summary": "Concert attendance, spend per event, and willingness to pay.",
+          "charts": [
+            {
+              "id": "mus_live_attend",
+              "title": "Live event attendance (past 12 months) — placeholder",
+              "type": "stacked_bar",
+              "labels": ["0","1","2-3","4-5","6+"],
+              "datasets": [
+                { "label": "Age 13-24", "data": [20,25,30,15,10], "color": "#6B46C1" },
+                { "label": "Age 25+", "data": [30,25,25,12,8], "color": "#C4A3D9" }
+              ],
+              "note": "⚠️ PLACEHOLDER DATA — Actual data to be added."
+            }
+          ]
         }
       ]
     }
