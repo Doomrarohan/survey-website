@@ -7,17 +7,13 @@ st.set_page_config(page_title="Media Report 2025 | Bain & Company", page_icon="�
 
 PALETTE = ["#CC2936","#1B4965","#2D936C","#E07A2F","#7B2D8E","#6B46C1","#D4526E","#13A8BE"]
 
-# ── Preload fonts (non-blocking) ──
 st.markdown("""
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 """, unsafe_allow_html=True)
 
-# ── Padding variable for reuse ──
-# Side padding: on wide screens centers at 1100px; on narrow screens 24px minimum
 PAD = "calc(max(24px, (100vw - 1100px) / 2))"
-# Negative version to break out of padding for full-width elements
 NPAD = "calc(-1 * max(24px, (100vw - 1100px) / 2))"
 
 st.markdown(f"""
@@ -25,40 +21,76 @@ st.markdown(f"""
 #MainMenu{{visibility:hidden}}header{{visibility:hidden}}footer{{visibility:hidden}}
 .stApp{{background:#fff}}
 section[data-testid="stSidebar"]{{display:none}}
-
-/* ── CORE: side padding on the Streamlit container ── */
 .block-container{{
-    padding-top:0!important;
-    padding-bottom:0!important;
-    padding-left:{PAD}!important;
-    padding-right:{PAD}!important;
+    padding-top:0!important;padding-bottom:0!important;
+    padding-left:{PAD}!important;padding-right:{PAD}!important;
     max-width:100%!important;
-}}
-
-/* ── FULL-WIDTH ELEMENTS: break out of container padding ── */
-.full-width{{
-    margin-left:{NPAD};
-    margin-right:{NPAD};
 }}
 
 /* ── NAV ── */
 .bain-nav{{
-    background:#fff;
-    padding:0 {PAD};
-    display:flex;align-items:center;
-    border-bottom:1px solid #e5e5e5;
-    position:sticky;top:0;z-index:999;height:52px;
+    background:#fff;padding:0 {PAD};display:flex;align-items:center;
+    border-bottom:1px solid #e5e5e5;position:sticky;top:0;z-index:999;height:52px;
     margin-left:{NPAD};margin-right:{NPAD};
 }}
 .bain-logo-area{{display:flex;align-items:center;margin-right:36px;flex-shrink:0}}
 .nav-links{{display:flex;gap:0;flex:1;height:100%}}
-.nav-link{{font-size:13px;color:#666;font-family:'DM Sans',sans-serif;font-weight:500;padding:0 14px;display:flex;align-items:center;height:100%;border-bottom:2px solid transparent;cursor:pointer;transition:all .15s;white-space:nowrap}}
+.nav-link{{font-size:13px;color:#666;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;font-weight:500;padding:0 14px;display:flex;align-items:center;height:100%;border-bottom:2px solid transparent;cursor:pointer;transition:all .15s;white-space:nowrap}}
 .nav-link:hover{{color:#1a1a1a;background:#fafafa}}
 .nav-link.active{{color:#CC2936;border-bottom-color:#CC2936}}
-.nav-right{{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:11px;color:#999;font-family:'DM Sans',sans-serif;flex-shrink:0}}
+.nav-right{{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:11px;color:#999;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;flex-shrink:0}}
 .nav-right-dot{{width:6px;height:6px;border-radius:50%;background:#2D936C}}
 
-/* ── HERO ── */
+/* ── OVERVIEW HERO (vibrant media-themed) ── */
+.hero-media{{
+    margin-left:{NPAD};margin-right:{NPAD};
+    padding:0;position:relative;overflow:hidden;
+    background:linear-gradient(135deg, #CC2936 0%, #7B2D8E 40%, #1B4965 70%, #CC2936 100%);
+    background-size:300% 300%;
+    animation:heroShift 12s ease infinite;
+    min-height:340px;display:flex;align-items:center;
+}}
+@keyframes heroShift{{
+    0%{{background-position:0% 50%}}
+    50%{{background-position:100% 50%}}
+    100%{{background-position:0% 50%}}
+}}
+.hero-media::before{{
+    content:'';position:absolute;inset:0;
+    background:
+        radial-gradient(ellipse 300px 300px at 15% 60%, rgba(204,41,54,.5) 0%, transparent 70%),
+        radial-gradient(ellipse 250px 350px at 75% 30%, rgba(123,45,142,.4) 0%, transparent 70%),
+        radial-gradient(circle 180px at 55% 80%, rgba(27,73,101,.35) 0%, transparent 70%),
+        radial-gradient(circle 120px at 85% 70%, rgba(204,41,54,.3) 0%, transparent 70%);
+    pointer-events:none;
+}}
+.hero-media::after{{
+    content:'';position:absolute;inset:0;
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Cellipse cx='650' cy='200' rx='120' ry='80' fill='rgba(255,255,255,0.06)' /%3E%3Crect x='600' y='160' width='100' height='80' rx='12' fill='rgba(255,255,255,0.04)' /%3E%3Ccircle cx='180' cy='300' r='60' fill='rgba(255,255,255,0.04)' /%3E%3Cpath d='M160 290 L200 310 L160 330Z' fill='rgba(255,255,255,0.06)' /%3E%3Crect x='350' y='100' width='80' height='50' rx='6' fill='rgba(255,255,255,0.03)' /%3E%3Ccircle cx='390' cy='125' r='15' fill='rgba(255,255,255,0.05)' /%3E%3Crect x='100' y='80' width='120' height='75' rx='8' fill='rgba(255,255,255,0.03)' /%3E%3Crect x='110' y='120' width='100' height='6' rx='3' fill='rgba(255,255,255,0.04)' /%3E%3Crect x='110' y='132' width='70' height='6' rx='3' fill='rgba(255,255,255,0.03)' /%3E%3Ccircle cx='700' cy='80' r='40' fill='rgba(255,255,255,0.03)' /%3E%3Cpath d='M690 60 Q700 50 710 60 Q720 70 710 80 Q700 90 690 80 Q680 70 690 60Z' fill='rgba(255,255,255,0.04)' /%3E%3C/svg%3E") center/cover no-repeat;
+    pointer-events:none;
+}}
+.hero-media-inner{{
+    position:relative;z-index:1;
+    padding:60px {PAD} 52px;
+    max-width:680px;
+}}
+.hero-media-ey{{
+    display:inline-block;background:rgba(255,255,255,.15);backdrop-filter:blur(4px);
+    color:#fff;font-size:12px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;
+    padding:6px 16px;border-radius:4px;margin-bottom:16px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;
+    border:1px solid rgba(255,255,255,.15);
+}}
+.hero-media-title{{
+    font-family:'Playfair Display',Georgia,serif;font-size:clamp(2rem,4.5vw,3rem);
+    font-weight:800;color:#fff;line-height:1.1;margin-bottom:12px;letter-spacing:-.5px;
+}}
+.hero-media-desc{{
+    color:rgba(255,255,255,.75);font-size:15px;line-height:1.7;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;
+    max-width:560px;
+}}
+
+/* ── SUBPAGE HERO (dark, simple) ── */
 .hero-full{{
     background:#1a1a1a;
     padding:52px {PAD} 44px;
@@ -67,44 +99,44 @@ section[data-testid="stSidebar"]{{display:none}}
 }}
 .hero-full::before{{content:'';position:absolute;top:-40%;right:0;width:500px;height:500px;background:radial-gradient(circle,rgba(204,41,54,.12) 0%,transparent 70%);pointer-events:none}}
 .hero-inner{{max-width:760px;position:relative;z-index:1}}
-.hero-ey{{display:inline-block;background:#CC2936;color:#fff;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:3px;margin-bottom:14px;font-family:'DM Sans',sans-serif}}
+.hero-ey{{display:inline-block;background:#CC2936;color:#fff;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:3px;margin-bottom:14px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
 .hero-title{{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;color:#fff;line-height:1.12;margin-bottom:8px;letter-spacing:-.5px}}
 .hero-sub{{font-family:'Playfair Display',Georgia,serif;font-size:16px;color:rgba(255,255,255,.6);font-style:italic}}
 
 /* ── CONTENT ── */
-.exec-label{{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#CC2936;margin-bottom:14px;font-family:'DM Sans',sans-serif}}
+.exec-label{{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#CC2936;margin-bottom:14px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
 .kpi-grid{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}}
 .kpi{{background:#f8f8f8;border-radius:8px;padding:16px;text-align:center;border:1px solid #f0f0f0}}
-.kpi-n{{font-size:24px;font-weight:600;color:#1a1a1a;font-family:'DM Sans',sans-serif}}
-.kpi-l{{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-top:3px;font-family:'DM Sans',sans-serif}}
+.kpi-n{{font-size:24px;font-weight:600;color:#1a1a1a;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
+.kpi-l{{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-top:3px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
 .insights-grid{{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}}
-.insight{{border-left:3px solid #CC2936;padding:10px 14px;background:#fafafa;border-radius:0 8px 8px 0;font-size:13px;color:#333;line-height:1.6;font-family:'DM Sans',sans-serif}}
-.body-text{{font-size:15px;color:#444;line-height:1.8;margin-bottom:28px;font-family:'DM Sans',sans-serif;max-width:800px}}
+.insight{{border-left:3px solid #CC2936;padding:10px 14px;background:#fafafa;border-radius:0 8px 8px 0;font-size:13px;color:#333;line-height:1.6;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
+.body-text{{font-size:15px;color:#444;line-height:1.8;margin-bottom:28px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;max-width:800px}}
 
 .vert-cards{{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}}
 .vert-card{{border:1px solid #e5e5e5;border-radius:10px;padding:22px;background:#fff;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}}
 .vert-card:hover{{box-shadow:0 6px 24px rgba(0,0,0,.07);transform:translateY(-2px)}}
 .vert-card-bar{{position:absolute;top:0;left:0;right:0;height:4px}}
 .vert-card-icon{{font-size:26px;margin-bottom:8px;display:block}}
-.vert-card-name{{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:5px;font-family:'DM Sans',sans-serif}}
-.vert-card-desc{{font-size:12px;color:#888;line-height:1.6;font-family:'DM Sans',sans-serif}}
-.vert-card-status{{font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;position:absolute;top:14px;right:14px;font-family:'DM Sans',sans-serif}}
+.vert-card-name{{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:5px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
+.vert-card-desc{{font-size:12px;color:#888;line-height:1.6;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
+.vert-card-status{{font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;position:absolute;top:14px;right:14px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
 .status-live{{background:#fef2f2;color:#CC2936}}
 .status-soon{{background:#f0ebe0;color:#8a6d3b}}
 
 .block-card{{border:1px solid #e5e5e5;border-radius:10px;padding:20px 22px;background:#fff;position:relative;margin-bottom:20px}}
 .block-card:hover{{box-shadow:0 3px 14px rgba(0,0,0,.04)}}
 .block-bar{{position:absolute;left:0;top:20px;bottom:20px;width:4px;border-radius:2px}}
-.block-heading{{font-size:16px;font-weight:600;color:#1a1a1a;padding-left:12px;margin-bottom:3px;font-family:'DM Sans',sans-serif}}
-.block-subtitle{{font-size:13px;color:#888;padding-left:12px;margin-bottom:3px;line-height:1.4;font-family:'DM Sans',sans-serif}}
-.block-question{{font-size:11px;color:#aaa;padding-left:12px;font-style:italic;line-height:1.4;font-family:'DM Sans',sans-serif}}
-.block-takeaway{{font-size:12px;font-weight:600;color:#CC2936;margin-top:10px;padding-left:12px;font-family:'DM Sans',sans-serif}}
-.chart-note{{font-size:11px;color:#888;background:#f8f8f8;border-radius:6px;padding:8px 12px;margin-top:6px;line-height:1.5;font-family:'DM Sans',sans-serif}}
+.block-heading{{font-size:16px;font-weight:600;color:#1a1a1a;padding-left:12px;margin-bottom:3px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
+.block-subtitle{{font-size:13px;color:#888;padding-left:12px;margin-bottom:3px;line-height:1.4;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
+.block-question{{font-size:11px;color:#aaa;padding-left:12px;font-style:italic;line-height:1.4;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
+.block-takeaway{{font-size:12px;font-weight:600;color:#CC2936;margin-top:10px;padding-left:12px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
+.chart-note{{font-size:11px;color:#888;background:#f8f8f8;border-radius:6px;padding:8px 12px;margin-top:6px;line-height:1.5;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
 
 .coming-soon{{text-align:center;padding:80px 20px}}
 .coming-soon-icon{{font-size:48px;margin-bottom:16px}}
-.coming-soon-title{{font-size:22px;font-weight:600;color:#1a1a1a;margin-bottom:8px;font-family:'DM Sans',sans-serif}}
-.coming-soon-text{{font-size:14px;color:#888;max-width:500px;margin:0 auto;line-height:1.7;font-family:'DM Sans',sans-serif}}
+.coming-soon-title{{font-size:22px;font-weight:600;color:#1a1a1a;margin-bottom:8px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
+.coming-soon-text{{font-size:14px;color:#888;max-width:500px;margin:0 auto;line-height:1.7;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
 .coming-soon-bar{{width:50px;height:3px;background:#CC2936;margin:20px auto 0;border-radius:2px}}
 
 .divider{{height:1px;background:#e5e5e5;margin:28px 0}}
@@ -112,22 +144,21 @@ section[data-testid="stSidebar"]{{display:none}}
 .pw-screen{{min-height:80vh;display:flex;align-items:center;justify-content:center}}
 .pw-box{{max-width:380px;text-align:center}}
 .pw-logo-text{{font-family:'Playfair Display',Georgia,serif;font-size:28px;font-weight:800;color:#CC2936;margin-bottom:4px}}
-.pw-title{{font-size:14px;color:#666;margin-bottom:24px;font-family:'DM Sans',sans-serif}}
+.pw-title{{font-size:14px;color:#666;margin-bottom:24px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
 .pw-line{{width:40px;height:3px;background:#CC2936;margin:0 auto 20px;border-radius:2px}}
 
 .bain-footer{{
-    background:#1a1a1a;
-    padding:28px {PAD};
-    text-align:center;
+    background:#1a1a1a;padding:28px {PAD};text-align:center;
     margin-left:{NPAD};margin-right:{NPAD};
 }}
-.bain-footer p{{font-size:12px;color:rgba(255,255,255,.4);font-family:'DM Sans',sans-serif}}
+.bain-footer p{{font-size:12px;color:rgba(255,255,255,.4);font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
 .bain-footer a{{color:#CC2936;text-decoration:none}}
 
 @media(max-width:768px){{
     .kpi-grid{{grid-template-columns:1fr 1fr}}
     .insights-grid,.vert-cards{{grid-template-columns:1fr}}
     .nav-links{{overflow-x:auto}}
+    .hero-media{{min-height:260px}}
 }}
 </style>
 """, unsafe_allow_html=True)
@@ -140,7 +171,6 @@ def load_data():
 
 DATA = load_data()
 
-# ── PASSWORD ──
 def check_password():
     if "authenticated" not in st.session_state:
         st.session_state.authenticated = False
@@ -164,7 +194,6 @@ def check_password():
 if not check_password():
     st.stop()
 
-# ── ROUTING ──
 verticals = DATA["verticals"]
 NAV_ITEMS = ["Overview"] + [v["name"] for v in verticals]
 if "page" not in st.session_state:
@@ -173,7 +202,6 @@ def nav_to(page):
     st.session_state.page = page
 current = st.session_state.page
 
-# ── NAV ──
 nav_links = ""
 for item in NAV_ITEMS:
     cls = "active" if item == current else ""
@@ -202,8 +230,6 @@ div[data-testid="stHorizontalBlock"]:has(button[kind="secondary"]) button{
 </style>
 """, unsafe_allow_html=True)
 
-
-# ── CACHED CHART BUILDER ──
 @st.cache_data
 def build_chart_figure(labels, datasets_json, chart_type, height):
     is_horiz = "horizontal" in chart_type
@@ -231,8 +257,6 @@ def build_chart_figure(labels, datasets_json, chart_type, height):
         fig.update_yaxes(gridcolor="#f0f0f0", **ts)
     return fig
 
-
-# ── FRAGMENT: single block (reruns only itself on dropdown change) ──
 @st.fragment
 def render_block(block, color, prefix=""):
     st.markdown(
@@ -259,7 +283,6 @@ def render_block(block, color, prefix=""):
     if block.get("takeaway"):
         st.markdown(f'<div class="block-takeaway">{block["takeaway"]}</div>', unsafe_allow_html=True)
 
-
 def render_exec(ex):
     st.markdown('<div class="exec-label">Executive summary</div>', unsafe_allow_html=True)
     khtml = '<div class="kpi-grid">'
@@ -276,28 +299,38 @@ def render_exec(ex):
 # PAGE: OVERVIEW
 # ══════════════════════════════════════════
 if current == "Overview":
+    # 1. VIBRANT HERO BANNER
     st.markdown(f"""
-    <div class="hero-full"><div class="hero-inner">
-        <div class="hero-ey">Media Report 2025</div>
-        <div class="hero-title">{DATA['title']}</div>
-        <div class="hero-sub">Breaking boundaries across media verticals</div>
-    </div></div>
+    <div class="hero-media">
+        <div class="hero-media-inner">
+            <div class="hero-media-ey">Media Report 2025</div>
+            <div class="hero-media-title">Gamer Survey: Great<br>Gameplay Is No Longer Enough</div>
+            <div class="hero-media-desc">Top games are winning with community building, user-generated content, and innovative revenue models across the media value chain.</div>
+        </div>
+    </div>
     """, unsafe_allow_html=True)
 
+    # 2. DESCRIPTION (right after banner)
+    st.markdown(f'<div class="body-text" style="margin-top:32px">{DATA["description"]}</div>', unsafe_allow_html=True)
+
+    st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
+
+    # 3. EXECUTIVE SUMMARY
     ex = DATA.get("overview_exec", {})
     if ex:
         render_exec(ex)
 
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
-    st.markdown(f'<div class="body-text">{DATA["description"]}</div>', unsafe_allow_html=True)
 
+    # 4. MEDIA HIGHLIGHTS (renamed, shows gaming charts as placeholder)
     gaming = next((v for v in verticals if v["id"] == "gaming"), None)
     if gaming and gaming.get("blocks"):
-        st.markdown('<div class="exec-label">Gaming highlights</div>', unsafe_allow_html=True)
+        st.markdown('<div class="exec-label">Media highlights</div>', unsafe_allow_html=True)
         for block in gaming["blocks"][:2]:
             render_block(block, gaming["color"], prefix="ov_")
         st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
+    # 5. EXPLORE BY VERTICAL (cards)
     st.markdown('<div class="exec-label">Explore by vertical</div>', unsafe_allow_html=True)
     chtml = '<div class="vert-cards">'
     for v in verticals:
@@ -360,7 +393,6 @@ elif current in [v["name"] for v in verticals]:
             nav_to("Overview")
             st.rerun()
 
-# ── FOOTER ──
 st.markdown("""
 <div class="bain-footer"><p>Media Industry Report 2025 &mdash; <a href="https://www.bain.com">Bain & Company</a> &mdash; Confidential</p></div>
 """, unsafe_allow_html=True)
