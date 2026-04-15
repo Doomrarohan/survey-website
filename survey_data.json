@@ -1,8 +1,22 @@
 {
   "title": "Media Industry Report 2025",
   "subtitle": "Breaking boundaries across media verticals",
-  "description": "Comprehensive survey across Gaming, Social Media, Streaming, Publishing, Advertising, and Music. Confidential \u2014 authorized access only.",
+  "description": "Bain Media Report 2026 is a comprehensive look at the trends defining the future of media. Bringing together insights from a broad-based media survey and targeted deep dives across the value chain \u2014 the report uncovers how consumer behavior is shifting, where monetization models are evolving, and which themes will shape competitive advantage in 2026.",
   "password": "bain2025",
+  "overview_exec": {
+    "kpis": [
+      {"value": "6", "label": "Media verticals"},
+      {"value": "399", "label": "Gaming respondents"},
+      {"value": "5.7", "label": "Avg games played"},
+      {"value": "7 hrs", "label": "Avg weekly play"}
+    ],
+    "insights": [
+      "Roblox leads as #1 most played game \u2014 16.5% rank it first, ahead of Fortnite (11.7%)",
+      "50% of 13-17 y.o. have played their top game for 2+ years \u2014 deep loyalty",
+      "Immersive gamers play 7.2 hrs/wk vs 6.3 for non-immersive \u2014 14% more engaged",
+      "Gameplay + friends are the top play drivers \u2014 graphics rank lower than social factors"
+    ]
+  },
   "verticals": [
     {
       "id": "gaming",
@@ -11,7 +25,8 @@
       "color": "#CC2936",
       "status": "live",
       "respondents": 399,
-      "summary": "Cloud gaming, monetisation shifts, and the rise of indie studios are reshaping how players spend time and money.",
+      "card_desc": "Cloud gaming, monetisation shifts, and the rise of indie studios are reshaping how players spend time and money.",
+      "summary": "Cloud gaming, monetisation shifts, and the rise of indie studios are reshaping how players spend time and money. This section covers game variety, top titles, play tenure, motivations, time consumption, and device usage across 399 respondents aged 2\u201317.",
       "exec_summary": {
         "kpis": [
           {"value": "399", "label": "Respondents"},
@@ -20,10 +35,10 @@
           {"value": "1.4", "label": "Devices per gamer"}
         ],
         "insights": [
-          "Roblox leads as #1 most played game \u2014 16.5% rank it first, ahead of Fortnite (11.7%)",
-          "50% of 13-17 y.o. have played their top game for 2+ years \u2014 deep loyalty",
-          "Immersive gamers play 7.2 hrs/wk vs 6.3 for non-immersive \u2014 14% more engaged",
-          "Gameplay + friends are the top play drivers \u2014 graphics rank lower than social factors"
+          "Roblox leads as #1 most played game \u2014 16.5% rank it first",
+          "50% of 13-17 y.o. have played their top game for 2+ years",
+          "Immersive gamers play 7.2 hrs/wk vs 6.3 for non-immersive",
+          "Gameplay + friends are the top play drivers"
         ]
       },
       "blocks": [
@@ -202,49 +217,24 @@
       ]
     },
     {
-      "id": "social_media",
-      "name": "Social Media",
-      "icon": "\ud83d\udcf1",
-      "color": "#1B4965",
-      "status": "placeholder",
-      "respondents": null,
-      "summary": "Platform usage, creator economy, algorithm-driven content discovery, and social commerce trends."
+      "id": "social_media", "name": "Social Media", "icon": "\ud83d\udcf1", "color": "#1B4965", "status": "placeholder",
+      "card_desc": "Platform usage, creator economy, algorithm-driven content discovery, and social commerce trends."
     },
     {
-      "id": "streaming",
-      "name": "Streaming & OTT",
-      "icon": "\ud83d\udcfa",
-      "color": "#7B2D8E",
-      "status": "placeholder",
-      "respondents": null,
-      "summary": "Ad-supported tiers, password-sharing crackdowns, live sports licensing, and content ROI."
+      "id": "streaming", "name": "Streaming & OTT", "icon": "\ud83d\udcfa", "color": "#7B2D8E", "status": "placeholder",
+      "card_desc": "Ad-supported tiers, password-sharing crackdowns, live sports licensing, and content ROI."
     },
     {
-      "id": "publishing",
-      "name": "Publishing & Print",
-      "icon": "\ud83d\udcda",
-      "color": "#2D936C",
-      "status": "placeholder",
-      "respondents": null,
-      "summary": "Digital-first titles, AI content disruption, audiobook growth, and subscription bundling."
+      "id": "publishing", "name": "Publishing & Print", "icon": "\ud83d\udcda", "color": "#2D936C", "status": "placeholder",
+      "card_desc": "Digital-first titles, AI content disruption, audiobook growth, and subscription bundling."
     },
     {
-      "id": "advertising",
-      "name": "Advertising & Adtech",
-      "icon": "\ud83d\udce2",
-      "color": "#E07A2F",
-      "status": "placeholder",
-      "respondents": null,
-      "summary": "Cookie deprecation, retail media networks, CTV growth, and AI-driven creative production."
+      "id": "advertising", "name": "Advertising & Adtech", "icon": "\ud83d\udce2", "color": "#E07A2F", "status": "placeholder",
+      "card_desc": "Cookie deprecation, retail media networks, CTV growth, and AI-driven creative production."
     },
     {
-      "id": "music",
-      "name": "Music & Audio",
-      "icon": "\ud83c\udfb5",
-      "color": "#6B46C1",
-      "status": "placeholder",
-      "respondents": null,
-      "summary": "Streaming royalties, AI composition, live event economics, and podcast growth."
+      "id": "music", "name": "Music & Audio", "icon": "\ud83c\udfb5", "color": "#6B46C1", "status": "placeholder",
+      "card_desc": "Streaming royalties, AI composition, live event economics, and podcast growth."
     }
   ]
 }
