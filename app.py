@@ -192,7 +192,7 @@ for item in NAV_ITEMS:
     nav_links += f'<span class="nav-link {cls}">{item}</span>'
 st.markdown(f"""
 <div class="bain-nav">
-    <div class="bain-logo-area"><svg viewBox="0 0 80 22" height="20"><text x="0" y="17" font-family="Playfair Display,Georgia,serif" font-weight="800" font-size="20" fill="#CC2936">BAIN</text></svg></div>
+    <div class="bain-logo-area"></div>
     <div class="nav-links">{nav_links}</div>
     <div class="nav-right"><div class="nav-right-dot"></div>Authenticated</div>
 </div>
