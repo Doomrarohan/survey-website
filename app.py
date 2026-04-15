@@ -7,15 +7,20 @@ st.set_page_config(page_title="Media Report 2025 | Bain & Company", page_icon="�
 
 PALETTE = ["#CC2936","#1B4965","#2D936C","#E07A2F","#7B2D8E","#6B46C1","#D4526E","#13A8BE"]
 
+# ── Preload fonts via link (not @import which blocks rendering) ──
+st.markdown("""
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+""", unsafe_allow_html=True)
+
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@700;800&display=swap');
 #MainMenu{visibility:hidden}header{visibility:hidden}footer{visibility:hidden}
 .block-container{padding:0!important;max-width:100%!important}
 .stApp{background:#fff}
 section[data-testid="stSidebar"]{display:none}
 
-/* ── NAV ── */
 .bain-nav{background:#fff;padding:0 calc((100% - 1100px)/2);display:flex;align-items:center;border-bottom:1px solid #e5e5e5;position:sticky;top:0;z-index:999;height:52px}
 .bain-logo-area{display:flex;align-items:center;margin-right:36px;flex-shrink:0}
 .nav-links{display:flex;gap:0;flex:1;height:100%}
@@ -25,7 +30,6 @@ section[data-testid="stSidebar"]{display:none}
 .nav-right{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:11px;color:#999;font-family:'DM Sans',sans-serif;flex-shrink:0}
 .nav-right-dot{width:6px;height:6px;border-radius:50%;background:#2D936C}
 
-/* ── HERO ── */
 .hero-full{background:#1a1a1a;padding:52px calc((100% - 1100px)/2) 44px;position:relative;overflow:hidden}
 .hero-full::before{content:'';position:absolute;top:-40%;right:0;width:500px;height:500px;background:radial-gradient(circle,rgba(204,41,54,.12) 0%,transparent 70%);pointer-events:none}
 .hero-inner{max-width:760px;position:relative;z-index:1}
@@ -33,10 +37,7 @@ section[data-testid="stSidebar"]{display:none}
 .hero-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;color:#fff;line-height:1.12;margin-bottom:8px;letter-spacing:-.5px}
 .hero-sub{font-family:'Playfair Display',Georgia,serif;font-size:16px;color:rgba(255,255,255,.6);font-style:italic}
 
-/* ── CONTENT ── */
 .content{max-width:1100px;margin:0 auto;padding:32px 24px 48px}
-
-/* ── EXEC ── */
 .exec-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#CC2936;margin-bottom:14px;font-family:'DM Sans',sans-serif}
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
 .kpi{background:#f8f8f8;border-radius:8px;padding:16px;text-align:center;border:1px solid #f0f0f0}
@@ -44,11 +45,8 @@ section[data-testid="stSidebar"]{display:none}
 .kpi-l{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-top:3px;font-family:'DM Sans',sans-serif}
 .insights-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
 .insight{border-left:3px solid #CC2936;padding:10px 14px;background:#fafafa;border-radius:0 8px 8px 0;font-size:13px;color:#333;line-height:1.6;font-family:'DM Sans',sans-serif}
-
-/* ── BODY TEXT ── */
 .body-text{font-size:15px;color:#444;line-height:1.8;margin-bottom:28px;font-family:'DM Sans',sans-serif;max-width:800px}
 
-/* ── VERTICAL CARDS ── */
 .vert-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
 .vert-card{border:1px solid #e5e5e5;border-radius:10px;padding:22px;background:#fff;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
 .vert-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.07);transform:translateY(-2px)}
@@ -60,7 +58,6 @@ section[data-testid="stSidebar"]{display:none}
 .status-live{background:#fef2f2;color:#CC2936}
 .status-soon{background:#f0ebe0;color:#8a6d3b}
 
-/* ── BLOCK CARDS ── */
 .block-card{border:1px solid #e5e5e5;border-radius:10px;padding:20px 22px;background:#fff;position:relative;margin-bottom:20px}
 .block-card:hover{box-shadow:0 3px 14px rgba(0,0,0,.04)}
 .block-bar{position:absolute;left:0;top:20px;bottom:20px;width:4px;border-radius:2px}
@@ -70,7 +67,6 @@ section[data-testid="stSidebar"]{display:none}
 .block-takeaway{font-size:12px;font-weight:600;color:#CC2936;margin-top:10px;padding-left:12px;font-family:'DM Sans',sans-serif}
 .chart-note{font-size:11px;color:#888;background:#f8f8f8;border-radius:6px;padding:8px 12px;margin-top:6px;line-height:1.5;font-family:'DM Sans',sans-serif}
 
-/* ── COMING SOON ── */
 .coming-soon{text-align:center;padding:80px 20px}
 .coming-soon-icon{font-size:48px;margin-bottom:16px}
 .coming-soon-title{font-size:22px;font-weight:600;color:#1a1a1a;margin-bottom:8px;font-family:'DM Sans',sans-serif}
@@ -79,29 +75,22 @@ section[data-testid="stSidebar"]{display:none}
 
 .divider{height:1px;background:#e5e5e5;margin:28px 0}
 
-/* ── PASSWORD ── */
 .pw-screen{min-height:80vh;display:flex;align-items:center;justify-content:center}
 .pw-box{max-width:380px;text-align:center}
 .pw-logo-text{font-family:'Playfair Display',Georgia,serif;font-size:28px;font-weight:800;color:#CC2936;margin-bottom:4px}
 .pw-title{font-size:14px;color:#666;margin-bottom:24px;font-family:'DM Sans',sans-serif}
 .pw-line{width:40px;height:3px;background:#CC2936;margin:0 auto 20px;border-radius:2px}
 
-/* ── FOOTER ── */
 .bain-footer{background:#1a1a1a;padding:28px calc((100% - 1100px)/2);text-align:center}
 .bain-footer p{font-size:12px;color:rgba(255,255,255,.4);font-family:'DM Sans',sans-serif}
 .bain-footer a{color:#CC2936;text-decoration:none}
 
-@media(max-width:1200px){
-  .bain-nav,.hero-full,.bain-footer{padding-left:24px;padding-right:24px}
-}
-@media(max-width:768px){
-  .kpi-grid{grid-template-columns:1fr 1fr}
-  .insights-grid,.vert-cards{grid-template-columns:1fr}
-  .nav-links{overflow-x:auto}
-}
+@media(max-width:1200px){.bain-nav,.hero-full,.bain-footer{padding-left:24px;padding-right:24px}}
+@media(max-width:768px){.kpi-grid{grid-template-columns:1fr 1fr}.insights-grid,.vert-cards{grid-template-columns:1fr}.nav-links{overflow-x:auto}}
 </style>
 """, unsafe_allow_html=True)
 
+# ── LOAD DATA (cached — only reads file once) ──
 @st.cache_data
 def load_data():
     p = Path(__file__).parent / "survey_data.json"
@@ -109,6 +98,36 @@ def load_data():
         return json.load(f)
 
 DATA = load_data()
+
+# ── CHART BUILDER (cached — same inputs = instant return) ──
+@st.cache_data
+def build_chart_figure(labels, datasets_json, chart_type, height):
+    """Build Plotly figure — cached by inputs so identical charts are instant."""
+    is_horiz = "horizontal" in chart_type
+    datasets = json.loads(datasets_json)
+    fig = go.Figure()
+    for i, ds in enumerate(datasets):
+        color = ds.get("color", PALETTE[i % len(PALETTE)])
+        kw = dict(name=ds["label"], marker_color=color, marker_line_color="white", marker_line_width=0.5,
+                  text=[f"{v}%" if v > 0 else "" for v in ds["data"]], textposition="inside",
+                  textfont=dict(size=10, color="white", family="DM Sans"))
+        if is_horiz:
+            fig.add_trace(go.Bar(y=labels, x=ds["data"], orientation="h", **kw))
+        else:
+            fig.add_trace(go.Bar(x=labels, y=ds["data"], **kw))
+    fig.update_layout(barmode="stack", height=height, margin=dict(l=5, r=5, t=5, b=5),
+        font=dict(family="DM Sans", size=12, color="#4a4a4a"),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0, font=dict(size=11)),
+        plot_bgcolor="white", paper_bgcolor="white", bargap=0.25, bargroupgap=0.1)
+    ts = dict(gridwidth=0.5, tickfont=dict(size=11, color="#888", family="DM Sans"))
+    if is_horiz:
+        fig.update_xaxes(gridcolor="#f0f0f0", **ts)
+        fig.update_yaxes(autorange="reversed", gridcolor="white", **ts)
+    else:
+        fig.update_xaxes(gridcolor="white", **ts)
+        fig.update_yaxes(gridcolor="#f0f0f0", **ts)
+    return fig
+
 
 # ── PASSWORD ──
 def check_password():
@@ -139,10 +158,8 @@ verticals = DATA["verticals"]
 NAV_ITEMS = ["Overview"] + [v["name"] for v in verticals]
 if "page" not in st.session_state:
     st.session_state.page = "Overview"
-
 def nav_to(page):
     st.session_state.page = page
-
 current = st.session_state.page
 
 # ── NAV ──
@@ -150,7 +167,6 @@ nav_links = ""
 for item in NAV_ITEMS:
     cls = "active" if item == current else ""
     nav_links += f'<span class="nav-link {cls}">{item}</span>'
-
 st.markdown(f"""
 <div class="bain-nav">
     <div class="bain-logo-area"><svg viewBox="0 0 80 22" height="20"><text x="0" y="17" font-family="Playfair Display,Georgia,serif" font-weight="800" font-size="20" fill="#CC2936">BAIN</text></svg></div>
@@ -159,7 +175,6 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# Invisible clickable buttons overlaying the nav
 cols_nav = st.columns(len(NAV_ITEMS))
 for i, item in enumerate(NAV_ITEMS):
     with cols_nav[i]:
@@ -177,57 +192,63 @@ div[data-testid="stHorizontalBlock"]:has(button[kind="secondary"]) button{
 """, unsafe_allow_html=True)
 
 
-# ── CHART BUILDER ──
-def build_chart(ch, height=340):
-    is_horiz = "horizontal" in ch.get("type", "")
-    fig = go.Figure()
-    for i, ds in enumerate(ch["datasets"]):
-        color = ds.get("color", PALETTE[i % len(PALETTE)])
-        kw = dict(name=ds["label"], marker_color=color, marker_line_color="white", marker_line_width=0.5,
-                  text=[f"{v}%" if v > 0 else "" for v in ds["data"]], textposition="inside",
-                  textfont=dict(size=10, color="white", family="DM Sans"))
-        if is_horiz:
-            fig.add_trace(go.Bar(y=ch["labels"], x=ds["data"], orientation="h", **kw))
-        else:
-            fig.add_trace(go.Bar(x=ch["labels"], y=ds["data"], **kw))
-    fig.update_layout(barmode="stack", height=height, margin=dict(l=5, r=5, t=5, b=5),
-        font=dict(family="DM Sans", size=12, color="#4a4a4a"),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0, font=dict(size=11)),
-        plot_bgcolor="white", paper_bgcolor="white", bargap=0.25, bargroupgap=0.1)
-    ts = dict(gridwidth=0.5, tickfont=dict(size=11, color="#888", family="DM Sans"))
-    if is_horiz:
-        fig.update_xaxes(gridcolor="#f0f0f0", **ts)
-        fig.update_yaxes(autorange="reversed", gridcolor="white", **ts)
-    else:
-        fig.update_xaxes(gridcolor="white", **ts)
-        fig.update_yaxes(gridcolor="#f0f0f0", **ts)
-    return fig
-
-
+# ══════════════════════════════════════════
+# FRAGMENT: renders ONE block independently
+# Dropdown changes inside a fragment only re-run
+# this fragment, not the entire app.
+# ══════════════════════════════════════════
+@st.fragment
 def render_block(block, color, prefix=""):
+    """Single chart block — isolated from full page reruns."""
     st.markdown(
         f'<div class="block-card"><div class="block-bar" style="background:{color}"></div>'
         f'<div class="block-heading">{block["heading"]}</div>'
         f'<div class="block-subtitle">{block["subtitle"]}</div>'
         f'<div class="block-question">{block.get("question","")}</div></div>',
         unsafe_allow_html=True)
+
     views = block.get("chart_views", {})
     vnames = list(views.keys())
     if len(vnames) > 1:
         sel = st.selectbox("Split by", vnames, key=f"s_{prefix}{block['id']}", label_visibility="collapsed")
     else:
         sel = vnames[0] if vnames else None
+
     if sel and sel in views:
         ch = views[sel]
         is_h = "horizontal" in ch.get("type", "")
         h = 48 + len(ch["labels"]) * 34 if is_h else 320
         h = min(max(h, 280), 450)
-        fig = build_chart(ch, height=h)
-        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False}, key=f"c_{prefix}{block['id']}_{sel}")
+
+        # Use cached chart builder — serialise datasets as JSON string for hashability
+        fig = build_chart_figure(
+            tuple(ch["labels"]),
+            json.dumps(ch["datasets"]),
+            ch.get("type", ""),
+            h,
+        )
+        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+
         if ch.get("note"):
             st.markdown(f'<div class="chart-note">{ch["note"]}</div>', unsafe_allow_html=True)
+
     if block.get("takeaway"):
         st.markdown(f'<div class="block-takeaway">{block["takeaway"]}</div>', unsafe_allow_html=True)
+
+
+# ══════════════════════════════════════════
+# HELPER: exec summary HTML
+# ══════════════════════════════════════════
+def render_exec(ex):
+    st.markdown('<div class="exec-label">Executive summary</div>', unsafe_allow_html=True)
+    khtml = '<div class="kpi-grid">'
+    for k in ex.get("kpis", []):
+        khtml += f'<div class="kpi"><div class="kpi-n">{k["value"]}</div><div class="kpi-l">{k["label"]}</div></div>'
+    st.markdown(khtml + '</div>', unsafe_allow_html=True)
+    ihtml = '<div class="insights-grid">'
+    for ins in ex.get("insights", []):
+        ihtml += f'<div class="insight">{ins}</div>'
+    st.markdown(ihtml + '</div>', unsafe_allow_html=True)
 
 
 # ══════════════════════════════════════════
@@ -247,26 +268,16 @@ if current == "Overview":
     # Exec summary
     ex = DATA.get("overview_exec", {})
     if ex:
-        st.markdown('<div class="exec-label">Executive summary</div>', unsafe_allow_html=True)
-        khtml = '<div class="kpi-grid">'
-        for k in ex.get("kpis", []):
-            khtml += f'<div class="kpi"><div class="kpi-n">{k["value"]}</div><div class="kpi-l">{k["label"]}</div></div>'
-        st.markdown(khtml + '</div>', unsafe_allow_html=True)
-        ihtml = '<div class="insights-grid">'
-        for ins in ex.get("insights", []):
-            ihtml += f'<div class="insight">{ins}</div>'
-        st.markdown(ihtml + '</div>', unsafe_allow_html=True)
+        render_exec(ex)
 
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
-
-    # Body description
     st.markdown(f'<div class="body-text">{DATA["description"]}</div>', unsafe_allow_html=True)
 
-    # Sample gaming charts ABOVE the cards
+    # Gaming highlights ABOVE cards (only 2 for speed)
     gaming = next((v for v in verticals if v["id"] == "gaming"), None)
     if gaming and gaming.get("blocks"):
         st.markdown('<div class="exec-label">Gaming highlights</div>', unsafe_allow_html=True)
-        for block in gaming["blocks"][:3]:
+        for block in gaming["blocks"][:2]:
             render_block(block, gaming["color"], prefix="ov_")
         st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
@@ -286,7 +297,6 @@ if current == "Overview":
         </div>'''
     st.markdown(chtml + '</div>', unsafe_allow_html=True)
 
-    # Card click buttons
     card_cols = st.columns(3)
     for i, v in enumerate(verticals):
         with card_cols[i % 3]:
@@ -315,26 +325,16 @@ elif current in [v["name"] for v in verticals]:
     st.markdown('<div class="content">', unsafe_allow_html=True)
 
     if is_live:
-        # Exec summary
         ex = vert.get("exec_summary", {})
         if ex:
-            st.markdown('<div class="exec-label">Executive summary</div>', unsafe_allow_html=True)
-            khtml = '<div class="kpi-grid">'
-            for k in ex.get("kpis", []):
-                khtml += f'<div class="kpi"><div class="kpi-n">{k["value"]}</div><div class="kpi-l">{k["label"]}</div></div>'
-            st.markdown(khtml + '</div>', unsafe_allow_html=True)
-            ihtml = '<div class="insights-grid">'
-            for ins in ex.get("insights", []):
-                ihtml += f'<div class="insight">{ins}</div>'
-            st.markdown(ihtml + '</div>', unsafe_allow_html=True)
-
+            render_exec(ex)
         st.markdown(f'<div class="body-text">{vert.get("summary","")}</div>', unsafe_allow_html=True)
         st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
+        # Each block is a fragment — dropdown changes only re-render that block
         for block in vert.get("blocks", []):
             render_block(block, vert["color"], prefix="pg_")
     else:
-        # Coming soon
         st.markdown(f"""
         <div class="coming-soon">
             <div class="coming-soon-icon">{vert['icon']}</div>
