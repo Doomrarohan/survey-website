@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 import json
 from pathlib import Path
 
-st.set_page_config(page_title="Media Report 2025 | Bain & Company", page_icon="🎮", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Media Report 2026 | Bain & Company", page_icon="🎮", layout="wide", initial_sidebar_state="collapsed")
 
 PALETTE = ["#CC2936","#1B4965","#2D936C","#E07A2F","#7B2D8E","#6B46C1","#D4526E","#13A8BE"]
 
@@ -178,13 +178,13 @@ def check_password():
         return True
     st.markdown("""
     <div class="bain-nav"><div class="bain-logo-area"><svg viewBox="0 0 80 22" height="20"><text x="0" y="17" font-family="Playfair Display,Georgia,serif" font-weight="800" font-size="20" fill="#CC2936">BAIN</text></svg></div></div>
-    <div class="pw-screen"><div class="pw-box"><div class="pw-logo-text">Bain & Company</div><div class="pw-line"></div><div class="pw-title">Media Industry Report 2025<br>Enter access code to continue</div></div></div>
+    <div class="pw-screen"><div class="pw-box"><div class="pw-logo-text">Bain & Company</div><div class="pw-line"></div><div class="pw-title">Media Report 2026<br>Enter access code to continue</div></div></div>
     """, unsafe_allow_html=True)
     c1, c2, c3 = st.columns([1.5, 1, 1.5])
     with c2:
         pwd = st.text_input("Code", type="password", key="pw_input", label_visibility="collapsed", placeholder="Access code")
         if st.button("Enter", use_container_width=True, type="primary"):
-            if pwd == DATA.get("password", "bain2025"):
+            if pwd == DATA.get("password", "bain2026"):
                 st.session_state.authenticated = True
                 st.rerun()
             else:
@@ -303,15 +303,12 @@ if current == "Overview":
     st.markdown(f"""
     <div class="hero-media">
         <div class="hero-media-inner">
-            <div class="hero-media-ey">Media Report 2025</div>
-            <div class="hero-media-title">Gamer Survey: Great<br>Gameplay Is No Longer Enough</div>
-            <div class="hero-media-desc">Top games are winning with community building, user-generated content, and innovative revenue models across the media value chain.</div>
+            <div class="hero-media-ey">Media Report 2026</div>
+            <div class="hero-media-title">Media Report 2026</div>
+            <div class="hero-media-desc">{DATA["description"]}</div>
         </div>
     </div>
     """, unsafe_allow_html=True)
-
-    # 2. DESCRIPTION (right after banner)
-    st.markdown(f'<div class="body-text" style="margin-top:32px">{DATA["description"]}</div>', unsafe_allow_html=True)
 
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
@@ -394,5 +391,5 @@ elif current in [v["name"] for v in verticals]:
             st.rerun()
 
 st.markdown("""
-<div class="bain-footer"><p>Media Industry Report 2025 &mdash; <a href="https://www.bain.com">Bain & Company</a> &mdash; Confidential</p></div>
+<div class="bain-footer"><p>Media Report 2026 &mdash; <a href="https://www.bain.com">Bain & Company</a> &mdash; Confidential</p></div>
 """, unsafe_allow_html=True)
