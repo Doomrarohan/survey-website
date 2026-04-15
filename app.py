@@ -288,7 +288,7 @@ if current == "Overview":
     <div class="hero-media">
         <div class="hero-media-inner">
             <div class="hero-media-ey">Media Report 2026</div>
-            <div class="hero-media-title">Media Report 2026</div>
+            <div class="hero-media-title">Bain Media survey</div>
             <div class="hero-media-desc">{DATA["description"]}</div>
         </div>
     </div>
