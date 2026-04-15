@@ -45,49 +45,33 @@ section[data-testid="stSidebar"]{{display:none}}
 .hero-media{{
     margin-left:{NPAD};margin-right:{NPAD};
     padding:0;position:relative;overflow:hidden;
-    background:linear-gradient(135deg, #CC2936 0%, #7B2D8E 40%, #1B4965 70%, #CC2936 100%);
-    background-size:300% 300%;
-    animation:heroShift 12s ease infinite;
-    min-height:340px;display:flex;align-items:center;
-}}
-@keyframes heroShift{{
-    0%{{background-position:0% 50%}}
-    50%{{background-position:100% 50%}}
-    100%{{background-position:0% 50%}}
+    background:linear-gradient(135deg, #1a1a1a 0%, #2a1215 30%, #CC2936 100%);
+    min-height:320px;display:flex;align-items:center;
 }}
 .hero-media::before{{
     content:'';position:absolute;inset:0;
     background:
-        radial-gradient(ellipse 300px 300px at 15% 60%, rgba(204,41,54,.5) 0%, transparent 70%),
-        radial-gradient(ellipse 250px 350px at 75% 30%, rgba(123,45,142,.4) 0%, transparent 70%),
-        radial-gradient(circle 180px at 55% 80%, rgba(27,73,101,.35) 0%, transparent 70%),
-        radial-gradient(circle 120px at 85% 70%, rgba(204,41,54,.3) 0%, transparent 70%);
-    pointer-events:none;
-}}
-.hero-media::after{{
-    content:'';position:absolute;inset:0;
-    background:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Cellipse cx='650' cy='200' rx='120' ry='80' fill='rgba(255,255,255,0.06)' /%3E%3Crect x='600' y='160' width='100' height='80' rx='12' fill='rgba(255,255,255,0.04)' /%3E%3Ccircle cx='180' cy='300' r='60' fill='rgba(255,255,255,0.04)' /%3E%3Cpath d='M160 290 L200 310 L160 330Z' fill='rgba(255,255,255,0.06)' /%3E%3Crect x='350' y='100' width='80' height='50' rx='6' fill='rgba(255,255,255,0.03)' /%3E%3Ccircle cx='390' cy='125' r='15' fill='rgba(255,255,255,0.05)' /%3E%3Crect x='100' y='80' width='120' height='75' rx='8' fill='rgba(255,255,255,0.03)' /%3E%3Crect x='110' y='120' width='100' height='6' rx='3' fill='rgba(255,255,255,0.04)' /%3E%3Crect x='110' y='132' width='70' height='6' rx='3' fill='rgba(255,255,255,0.03)' /%3E%3Ccircle cx='700' cy='80' r='40' fill='rgba(255,255,255,0.03)' /%3E%3Cpath d='M690 60 Q700 50 710 60 Q720 70 710 80 Q700 90 690 80 Q680 70 690 60Z' fill='rgba(255,255,255,0.04)' /%3E%3C/svg%3E") center/cover no-repeat;
+        radial-gradient(ellipse 500px 400px at 90% 50%, rgba(204,41,54,.25) 0%, transparent 70%),
+        radial-gradient(ellipse 300px 300px at 70% 80%, rgba(204,41,54,.15) 0%, transparent 70%);
     pointer-events:none;
 }}
 .hero-media-inner{{
     position:relative;z-index:1;
-    padding:60px {PAD} 52px;
-    max-width:680px;
+    padding:56px {PAD} 48px;
+    max-width:100%;
 }}
 .hero-media-ey{{
-    display:inline-block;background:rgba(255,255,255,.15);backdrop-filter:blur(4px);
-    color:#fff;font-size:12px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;
-    padding:6px 16px;border-radius:4px;margin-bottom:16px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;
-    border:1px solid rgba(255,255,255,.15);
+    display:inline-block;background:rgba(204,41,54,.8);
+    color:#fff;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+    padding:5px 14px;border-radius:3px;margin-bottom:16px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;
 }}
 .hero-media-title{{
     font-family:'Playfair Display',Georgia,serif;font-size:clamp(2rem,4.5vw,3rem);
-    font-weight:800;color:#fff;line-height:1.1;margin-bottom:12px;letter-spacing:-.5px;
+    font-weight:800;color:#fff;line-height:1.1;margin-bottom:14px;letter-spacing:-.5px;
 }}
 .hero-media-desc{{
-    color:rgba(255,255,255,.75);font-size:15px;line-height:1.7;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;
-    max-width:560px;
+    color:rgba(255,255,255,.7);font-size:15px;line-height:1.8;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;
+    max-width:800px;
 }}
 
 /* ── SUBPAGE HERO (dark, simple) ── */
