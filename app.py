@@ -361,61 +361,39 @@ def page_overview():
     # Vertical cards as page_link buttons
     st.markdown('<div class="exec-label">Explore by vertical</div>', unsafe_allow_html=True)
 
-    def render_card_row(start, end):
-        cols = st.columns(3)
-        for i in range(start, min(end, len(verticals))):
-            v = verticals[i]
-            with cols[i - start]:
-                st.page_link(ALL_PAGES[i+1], label=v['name'], use_container_width=True)
+    # Row 1
+    row1 = st.columns(3)
+    for i in range(3):
+        with row1[i]:
+            if st.button(verticals[i]["name"], key=f"vcard_{verticals[i]['id']}", use_container_width=True):
+                st.switch_page(ALL_PAGES[i+1])
 
-    render_card_row(0, 3)
-    render_card_row(3, 6)
+    # Row 2
+    row2 = st.columns(3)
+    for i in range(3, 6):
+        with row2[i-3]:
+            if st.button(verticals[i]["name"], key=f"vcard_{verticals[i]['id']}", use_container_width=True):
+                st.switch_page(ALL_PAGES[i+1])
 
-    # Style cards as gray boxes, then override nav links back to normal
+    # Style ONLY these buttons as gray boxes (target primary buttons in the card area)
     st.markdown("""
     <style>
-    /* All page_links as gray boxes by default */
-    a[data-testid="stPageLink-NavLink"] {
+    button[data-testid="stBaseButton-secondary"][kind="secondary"] {
         background: #f5f5f5 !important;
         border: 1px solid #e0e0e0 !important;
         border-radius: 8px !important;
         padding: 28px 20px !important;
-        text-decoration: none !important;
-        transition: all 0.2s !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-    a[data-testid="stPageLink-NavLink"]:hover {
-        background: #eee !important;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
-    }
-    a[data-testid="stPageLink-NavLink"] p {
         font-size: 15px !important;
         font-weight: 600 !important;
         color: #1a1a1a !important;
         font-family: 'Avenir Next','Avenir','Segoe UI',sans-serif !important;
-        text-align: center !important;
+        transition: all 0.2s !important;
+        cursor: pointer !important;
     }
-    a[data-testid="stPageLink-NavLink"] svg {
-        display: none !important;
-    }
-
-    /* Override: restore nav links to normal text style */
-    div[data-testid="stVerticalBlockBorderWrapper"]:first-child a[data-testid="stPageLink-NavLink"],
-    div[data-testid="stHorizontalBlock"]:first-of-type a[data-testid="stPageLink-NavLink"] {
-        background: transparent !important;
-        border: none !important;
-        border-radius: 0 !important;
-        padding: 14px 12px !important;
-        justify-content: flex-start !important;
-        box-shadow: none !important;
-    }
-    div[data-testid="stVerticalBlockBorderWrapper"]:first-child a[data-testid="stPageLink-NavLink"] p,
-    div[data-testid="stHorizontalBlock"]:first-of-type a[data-testid="stPageLink-NavLink"] p {
-        font-size: 13px !important;
-        font-weight: 500 !important;
-        text-align: left !important;
+    button[data-testid="stBaseButton-secondary"][kind="secondary"]:hover {
+        background: #eee !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+        border-color: #ccc !important;
     }
     </style>
     """, unsafe_allow_html=True)
