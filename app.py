@@ -9,9 +9,6 @@ PALETTE = ["#CC2936","#1B4965","#2D936C","#E07A2F","#7B2D8E","#6B46C1","#D4526E"
 PAD = "calc(max(24px, (100vw - 1100px) / 2))"
 NPAD = "calc(-1 * max(24px, (100vw - 1100px) / 2))"
 
-# ══════════════════════════════════════════
-# LOAD DATA
-# ══════════════════════════════════════════
 @st.cache_data
 def load_data():
     p = Path(__file__).parent / "survey_data.json"
@@ -22,7 +19,7 @@ DATA = load_data()
 verticals = DATA["verticals"]
 
 # ══════════════════════════════════════════
-# SHARED CSS (injected on every page)
+# CSS
 # ══════════════════════════════════════════
 def inject_css():
     st.markdown("""
@@ -42,26 +39,40 @@ def inject_css():
         max-width:100%!important;
     }}
 
-    .nav-bar{{
-        background:#fff;
-        padding:0 {PAD};
-        display:flex;align-items:center;
+    /* ── NAV BAR (row of st.page_link) ── */
+    div[data-testid="stHorizontalBlock"].nav-row {{
         border-bottom:1px solid #e5e5e5;
-        height:52px;
         margin-left:{NPAD};margin-right:{NPAD};
+        padding:0 {PAD};
+        background:#fff;
     }}
-    .nav-bar a{{
-        font-size:13px;color:#666;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;
-        font-weight:500;padding:0 14px;display:flex;align-items:center;height:52px;
-        border-bottom:2px solid transparent;text-decoration:none;white-space:nowrap;
-        transition:all .15s;
+    div[data-testid="stHorizontalBlock"].nav-row a[data-testid="stPageLink-NavLink"] {{
+        font-family:'Avenir Next','Avenir','Segoe UI',sans-serif!important;
+        font-size:13px!important;font-weight:500!important;
+        color:#666!important;padding:14px 12px!important;
+        border-bottom:2px solid transparent;border-radius:0!important;
+        text-decoration:none!important;
     }}
-    .nav-bar a:hover{{color:#1a1a1a;background:#fafafa}}
-    .nav-bar a.active{{color:#CC2936;border-bottom-color:#CC2936}}
-    .nav-spacer{{flex:1}}
-    .nav-auth{{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:11px;color:#999;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
-    .nav-auth-dot{{width:6px;height:6px;border-radius:50%;background:#2D936C}}
+    div[data-testid="stHorizontalBlock"].nav-row a[data-testid="stPageLink-NavLink"]:hover {{
+        color:#1a1a1a!important;background:#fafafa!important;
+    }}
+    div[data-testid="stHorizontalBlock"].nav-row a[data-testid="stPageLink-NavLink"][aria-current="page"] {{
+        color:#CC2936!important;border-bottom-color:#CC2936;
+    }}
 
+    /* ── CARD LINKS (st.page_link styled as cards) ── */
+    .card-grid a[data-testid="stPageLink-NavLink"] {{
+        border:1px solid #e5e5e5!important;border-radius:10px!important;
+        padding:22px!important;background:#fff!important;
+        text-decoration:none!important;color:#1a1a1a!important;
+        transition:all .2s!important;display:block!important;
+        font-family:'Avenir Next','Avenir','Segoe UI',sans-serif!important;
+    }}
+    .card-grid a[data-testid="stPageLink-NavLink"]:hover {{
+        box-shadow:0 6px 24px rgba(0,0,0,.07)!important;transform:translateY(-2px);
+    }}
+
+    /* ── HERO ── */
     .hero-media{{
         margin-left:{NPAD};margin-right:{NPAD};
         padding:0;position:relative;overflow:hidden;
@@ -75,29 +86,13 @@ def inject_css():
             radial-gradient(ellipse 300px 300px at 70% 80%, rgba(204,41,54,.15) 0%, transparent 70%);
         pointer-events:none;
     }}
-    .hero-media-inner{{
-        position:relative;z-index:1;
-        padding:56px {PAD} 48px;
-        max-width:100%;
-    }}
-    .hero-media-ey{{
-        display:inline-block;background:rgba(204,41,54,.8);
-        color:#fff;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
-        padding:5px 14px;border-radius:3px;margin-bottom:16px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;
-    }}
-    .hero-media-title{{
-        font-family:'Playfair Display',Georgia,serif;font-size:clamp(2rem,4.5vw,3rem);
-        font-weight:800;color:#fff;line-height:1.1;margin-bottom:14px;letter-spacing:-.5px;
-    }}
-    .hero-media-desc{{
-        color:rgba(255,255,255,.7);font-size:15px;line-height:1.8;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;
-        max-width:800px;
-    }}
+    .hero-media-inner{{position:relative;z-index:1;padding:56px {PAD} 48px;max-width:100%}}
+    .hero-media-ey{{display:inline-block;background:rgba(204,41,54,.8);color:#fff;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:3px;margin-bottom:16px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
+    .hero-media-title{{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2rem,4.5vw,3rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:14px;letter-spacing:-.5px}}
+    .hero-media-desc{{color:rgba(255,255,255,.7);font-size:15px;line-height:1.8;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;max-width:800px}}
 
     .hero-full{{
-        background:#1a1a1a;
-        padding:52px {PAD} 44px;
-        position:relative;overflow:hidden;
+        background:#1a1a1a;padding:52px {PAD} 44px;position:relative;overflow:hidden;
         margin-left:{NPAD};margin-right:{NPAD};
     }}
     .hero-full::before{{content:'';position:absolute;top:-40%;right:0;width:500px;height:500px;background:radial-gradient(circle,rgba(204,41,54,.12) 0%,transparent 70%);pointer-events:none}}
@@ -114,17 +109,6 @@ def inject_css():
     .insights-grid{{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}}
     .insight{{border-left:3px solid #CC2936;padding:10px 14px;background:#fafafa;border-radius:0 8px 8px 0;font-size:13px;color:#333;line-height:1.6;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
     .body-text{{font-size:15px;color:#444;line-height:1.8;margin-bottom:28px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;max-width:800px}}
-
-    .vert-cards{{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}}
-    .vert-card{{border:1px solid #e5e5e5;border-radius:10px;padding:22px;background:#fff;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}}
-    .vert-card:hover{{box-shadow:0 6px 24px rgba(0,0,0,.07);transform:translateY(-2px)}}
-    .vert-card-bar{{position:absolute;top:0;left:0;right:0;height:4px}}
-    .vert-card-icon{{font-size:26px;margin-bottom:8px;display:block}}
-    .vert-card-name{{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:5px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
-    .vert-card-desc{{font-size:12px;color:#888;line-height:1.6;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
-    .vert-card-status{{font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;position:absolute;top:14px;right:14px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
-    .status-live{{background:#fef2f2;color:#CC2936}}
-    .status-soon{{background:#f0ebe0;color:#8a6d3b}}
 
     .block-card{{border:1px solid #e5e5e5;border-radius:10px;padding:20px 22px;background:#fff;position:relative;margin-bottom:20px}}
     .block-card:hover{{box-shadow:0 3px 14px rgba(0,0,0,.04)}}
@@ -144,37 +128,20 @@ def inject_css():
     .divider{{height:1px;background:#e5e5e5;margin:28px 0}}
 
     .bain-footer{{
-        background:#1a1a1a;
-        padding:28px {PAD};text-align:center;
+        background:#1a1a1a;padding:28px {PAD};text-align:center;
         margin-left:{NPAD};margin-right:{NPAD};
     }}
     .bain-footer p{{font-size:12px;color:rgba(255,255,255,.4);font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
     .bain-footer a{{color:#CC2936;text-decoration:none}}
 
     @media(max-width:1200px){{.hero-full,.hero-media,.bain-footer{{padding-left:24px;padding-right:24px}}}}
-    @media(max-width:768px){{.kpi-grid{{grid-template-columns:1fr 1fr}}.insights-grid,.vert-cards{{grid-template-columns:1fr}}}}
+    @media(max-width:768px){{.kpi-grid{{grid-template-columns:1fr 1fr}}.insights-grid{{grid-template-columns:1fr}}}}
     </style>
     """, unsafe_allow_html=True)
 
 
-def render_nav(current_title="Overview"):
-    """Render the top nav bar with real links to each page."""
-    nav_items = [("Overview", "/overview")] + [(v["name"], f"/{v['id']}") for v in verticals]
-    links = ""
-    for name, url in nav_items:
-        cls = "active" if name == current_title else ""
-        links += f'<a href="{url}" class="{cls}">{name}</a>'
-    st.markdown(f"""
-    <div class="nav-bar">
-        {links}
-        <div class="nav-spacer"></div>
-        <div class="nav-auth"><div class="nav-auth-dot"></div>Authenticated</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-
 # ══════════════════════════════════════════
-# SHARED: CHART BUILDER (cached)
+# SHARED FUNCTIONS
 # ══════════════════════════════════════════
 @st.cache_data
 def build_chart_figure(labels, datasets_json, chart_type, height):
@@ -204,9 +171,6 @@ def build_chart_figure(labels, datasets_json, chart_type, height):
     return fig
 
 
-# ══════════════════════════════════════════
-# SHARED: RENDER BLOCK (fragment for perf)
-# ══════════════════════════════════════════
 @st.fragment
 def render_block(block, color, prefix=""):
     st.markdown(
@@ -246,6 +210,16 @@ def render_exec(ex):
     st.markdown(ihtml + '</div>', unsafe_allow_html=True)
 
 
+def render_nav(all_pages):
+    """Render navbar using st.page_link for proper internal navigation."""
+    cols = st.columns(len(all_pages) + 1)
+    for i, pg in enumerate(all_pages):
+        with cols[i]:
+            st.page_link(pg, label=pg.title, icon=getattr(pg, 'icon', None))
+    with cols[-1]:
+        st.markdown('<div style="text-align:right;font-size:11px;color:#999;padding:14px 0;font-family:Avenir Next,Avenir,Segoe UI,sans-serif"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#2D936C;margin-right:5px;vertical-align:middle"></span>Authenticated</div>', unsafe_allow_html=True)
+
+
 def render_footer():
     st.markdown("""
     <div class="bain-footer"><p>Media Report 2026 &mdash; <a href="https://www.bain.com">Bain & Company</a> &mdash; Confidential</p></div>
@@ -281,17 +255,13 @@ def check_password():
                 st.error("Incorrect code.")
     return False
 
-if not check_password():
-    st.stop()
-
 
 # ══════════════════════════════════════════
-# PAGE DEFINITIONS
+# PAGE FUNCTIONS
 # ══════════════════════════════════════════
-
 def page_overview():
     inject_css()
-    render_nav("Overview")
+    render_nav(ALL_PAGES)
 
     st.markdown(f"""
     <div class="hero-media"><div class="hero-media-inner">
@@ -307,7 +277,6 @@ def page_overview():
     if ex:
         render_exec(ex)
 
-    # Gaming highlights
     gaming = next((v for v in verticals if v["id"] == "gaming"), None)
     if gaming and gaming.get("blocks"):
         st.markdown('<div class="exec-label">Gaming highlights</div>', unsafe_allow_html=True)
@@ -315,98 +284,104 @@ def page_overview():
             render_block(block, gaming["color"], prefix="ov_")
         st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
-    # Vertical cards
+    # Vertical cards as page_link buttons
     st.markdown('<div class="exec-label">Explore by vertical</div>', unsafe_allow_html=True)
-    chtml = '<div class="vert-cards">'
-    for v in verticals:
+    row1 = st.columns(3)
+    row2 = st.columns(3)
+    for i, pg in enumerate(ALL_PAGES[1:]):  # skip overview
+        v = verticals[i]
         is_live = v.get("status") == "live"
-        sc = "status-live" if is_live else "status-soon"
-        st_text = f'{v.get("respondents","")} respondents' if is_live else "Coming soon"
-        chtml += f'''<a href="/{v['id']}" style="text-decoration:none;color:inherit;"><div class="vert-card">
-            <div class="vert-card-bar" style="background:{v['color']}"></div>
-            <div class="vert-card-status {sc}">{st_text}</div>
-            <span class="vert-card-icon">{v['icon']}</span>
-            <div class="vert-card-name">{v['name']}</div>
-            <div class="vert-card-desc">{v.get('card_desc','')}</div>
-        </div></a>'''
-    st.markdown(chtml + '</div>', unsafe_allow_html=True)
+        status = f"✅ {v.get('respondents','')} respondents" if is_live else "🔜 Coming soon"
+        label = f"{v['icon']} **{v['name']}**\n\n{v.get('card_desc','')}\n\n{status}"
+        col = row1[i] if i < 3 else row2[i - 3]
+        with col:
+            st.page_link(pg, label=label, use_container_width=True)
 
     render_footer()
 
 
-def page_live_vertical(vert):
-    """Page for a vertical with live data (Gaming)."""
-    inject_css()
-    render_nav(vert["name"])
+def make_live_page(vert):
+    """Factory: returns a page function for a live vertical."""
+    def page_fn():
+        inject_css()
+        render_nav(ALL_PAGES)
 
-    st.markdown(f"""
-    <div class="hero-full"><div class="hero-inner">
-        <div class="hero-ey">{vert['icon']} {vert['name']}</div>
-        <div class="hero-title">{vert['name']}</div>
-        <div class="hero-sub">{vert.get('respondents','')} respondents</div>
-    </div></div>
-    """, unsafe_allow_html=True)
+        st.markdown(f"""
+        <div class="hero-full"><div class="hero-inner">
+            <div class="hero-ey">{vert['icon']} {vert['name']}</div>
+            <div class="hero-title">{vert['name']}</div>
+            <div class="hero-sub">{vert.get('respondents','')} respondents</div>
+        </div></div>
+        """, unsafe_allow_html=True)
 
-    ex = vert.get("exec_summary", {})
-    if ex:
-        render_exec(ex)
-    st.markdown(f'<div class="body-text">{vert.get("summary","")}</div>', unsafe_allow_html=True)
-    st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
+        ex = vert.get("exec_summary", {})
+        if ex:
+            render_exec(ex)
+        st.markdown(f'<div class="body-text">{vert.get("summary","")}</div>', unsafe_allow_html=True)
+        st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
-    for block in vert.get("blocks", []):
-        render_block(block, vert["color"], prefix="pg_")
+        for block in vert.get("blocks", []):
+            render_block(block, vert["color"], prefix="pg_")
 
-    st.link_button("← Back to Overview", "/overview", use_container_width=False)
-    render_footer()
+        st.page_link(ALL_PAGES[0], label="← Back to Overview")
+        render_footer()
+    return page_fn
 
 
-def page_coming_soon(vert):
-    """Page for a placeholder vertical."""
-    inject_css()
-    render_nav(vert["name"])
+def make_coming_soon_page(vert):
+    """Factory: returns a page function for a placeholder vertical."""
+    def page_fn():
+        inject_css()
+        render_nav(ALL_PAGES)
 
-    st.markdown(f"""
-    <div class="hero-full"><div class="hero-inner">
-        <div class="hero-ey">{vert['icon']} {vert['name']}</div>
-        <div class="hero-title">{vert['name']}</div>
-    </div></div>
-    """, unsafe_allow_html=True)
+        st.markdown(f"""
+        <div class="hero-full"><div class="hero-inner">
+            <div class="hero-ey">{vert['icon']} {vert['name']}</div>
+            <div class="hero-title">{vert['name']}</div>
+        </div></div>
+        """, unsafe_allow_html=True)
 
-    st.markdown(f"""
-    <div class="coming-soon">
-        <div class="coming-soon-icon">{vert['icon']}</div>
-        <div class="coming-soon-title">Work in progress &mdash; Coming soon</div>
-        <div class="coming-soon-text">{vert.get('card_desc','')}</div>
-        <div class="coming-soon-bar"></div>
-    </div>
-    """, unsafe_allow_html=True)
+        st.markdown(f"""
+        <div class="coming-soon">
+            <div class="coming-soon-icon">{vert['icon']}</div>
+            <div class="coming-soon-title">Work in progress &mdash; Coming soon</div>
+            <div class="coming-soon-text">{vert.get('card_desc','')}</div>
+            <div class="coming-soon-bar"></div>
+        </div>
+        """, unsafe_allow_html=True)
 
-    st.link_button("← Back to Overview", "/overview", use_container_width=False)
-    render_footer()
+        st.page_link(ALL_PAGES[0], label="← Back to Overview")
+        render_footer()
+    return page_fn
 
 
 # ══════════════════════════════════════════
-# NAVIGATION SETUP (real separate pages)
+# BUILD ALL PAGES
 # ══════════════════════════════════════════
-pages = [
+ALL_PAGES = [
     st.Page(page_overview, title="Overview", url_path="overview", default=True),
 ]
 
 for vert in verticals:
     if vert.get("status") == "live":
-        pages.append(st.Page(
-            lambda v=vert: page_live_vertical(v),
+        ALL_PAGES.append(st.Page(
+            make_live_page(vert),
             title=vert["name"],
             url_path=vert["id"],
-            icon=vert["icon"],
         ))
     else:
-        pages.append(st.Page(
-            lambda v=vert: page_coming_soon(v),
+        ALL_PAGES.append(st.Page(
+            make_coming_soon_page(vert),
             title=vert["name"],
             url_path=vert["id"],
-            icon=vert["icon"],
         ))
 
-pg = st.navigation(pages, position="hidden")
+
+# ══════════════════════════════════════════
+# RUN
+# ══════════════════════════════════════════
+if not check_password():
+    st.stop()
+
+pg = st.navigation(ALL_PAGES, position="hidden")
 pg.run()
