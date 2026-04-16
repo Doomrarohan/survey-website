@@ -101,6 +101,46 @@ def inject_css():
     .hero-title{{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;color:#fff;line-height:1.12;margin-bottom:8px;letter-spacing:-.5px}}
     .hero-sub{{font-family:'Playfair Display',Georgia,serif;font-size:16px;color:rgba(255,255,255,.6);font-style:italic}}
 
+    /* ── GAMING HERO (dark with neon accents like Bain gaming report) ── */
+    .hero-gaming{{
+        margin-left:{NPAD};margin-right:{NPAD};
+        padding:0;position:relative;overflow:hidden;
+        background:#0a0a14;min-height:340px;display:flex;align-items:center;
+    }}
+    .hero-gaming::before{{
+        content:'';position:absolute;inset:0;
+        background:
+            radial-gradient(ellipse 400px 300px at 80% 40%, rgba(120,60,220,.25) 0%, transparent 70%),
+            radial-gradient(ellipse 300px 250px at 20% 70%, rgba(204,41,54,.2) 0%, transparent 70%),
+            radial-gradient(circle 200px at 60% 90%, rgba(0,180,255,.12) 0%, transparent 70%),
+            radial-gradient(circle 150px at 90% 80%, rgba(255,100,50,.1) 0%, transparent 70%);
+        pointer-events:none;
+    }}
+    .hero-gaming::after{{
+        content:'';position:absolute;inset:0;
+        background:
+            linear-gradient(135deg, transparent 40%, rgba(120,60,220,.06) 50%, transparent 60%),
+            linear-gradient(45deg, transparent 40%, rgba(0,180,255,.04) 50%, transparent 60%);
+        pointer-events:none;
+    }}
+    .hero-gaming-inner{{
+        position:relative;z-index:1;
+        padding:60px {PAD} 52px;max-width:100%;
+    }}
+    .hero-gaming-badge{{
+        display:inline-block;background:rgba(120,60,220,.3);border:1px solid rgba(120,60,220,.4);
+        color:#c8a0ff;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+        padding:5px 14px;border-radius:3px;margin-bottom:16px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;
+    }}
+    .hero-gaming-title{{
+        font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.2rem,5vw,3.2rem);
+        font-weight:800;color:#fff;line-height:1.08;margin-bottom:14px;letter-spacing:-.5px;
+    }}
+    .hero-gaming-desc{{
+        color:rgba(255,255,255,.6);font-size:15px;line-height:1.8;
+        font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;max-width:700px;
+    }}
+
     .exec-label{{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#CC2936;margin-bottom:14px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
     .kpi-grid{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}}
     .kpi{{background:#f8f8f8;border-radius:8px;padding:16px;text-align:center;border:1px solid #f0f0f0}}
@@ -118,6 +158,8 @@ def inject_css():
     .block-question{{font-size:11px;color:#aaa;padding-left:12px;font-style:italic;line-height:1.4;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
     .block-takeaway{{font-size:12px;font-weight:600;color:#CC2936;margin-top:10px;padding-left:12px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
     .chart-note{{font-size:11px;color:#888;background:#f8f8f8;border-radius:6px;padding:8px 12px;margin-top:6px;line-height:1.5;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
+
+    .section-heading{{font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:700;color:#1a1a1a;margin-bottom:24px}}
 
     .coming-soon{{text-align:center;padding:80px 20px}}
     .coming-soon-icon{{font-size:48px;margin-bottom:16px}}
@@ -173,11 +215,13 @@ def build_chart_figure(labels, datasets_json, chart_type, height):
 
 @st.fragment
 def render_block(block, color, prefix=""):
+    import re
+    question = block.get("question", "")
+    question = re.sub(r'^Q\d+:\s*', '', question)  # strip "Q37: " prefix
     st.markdown(
         f'<div class="block-card"><div class="block-bar" style="background:{color}"></div>'
         f'<div class="block-heading">{block["heading"]}</div>'
-        f'<div class="block-subtitle">{block["subtitle"]}</div>'
-        f'<div class="block-question">{block.get("question","")}</div></div>',
+        f'<div class="block-question">{question}</div></div>',
         unsafe_allow_html=True)
     views = block.get("chart_views", {})
     vnames = list(views.keys())
@@ -194,8 +238,6 @@ def render_block(block, color, prefix=""):
         st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
         if ch.get("note"):
             st.markdown(f'<div class="chart-note">{ch["note"]}</div>', unsafe_allow_html=True)
-    if block.get("takeaway"):
-        st.markdown(f'<div class="block-takeaway">{block["takeaway"]}</div>', unsafe_allow_html=True)
 
 
 def render_exec(ex):
@@ -306,24 +348,36 @@ def make_live_page(vert):
         inject_css()
         render_nav(ALL_PAGES)
 
+        hero_desc = vert.get('hero_desc', vert.get('summary', ''))
+
+        # Gaming-themed hero
         st.markdown(f"""
-        <div class="hero-full"><div class="hero-inner">
-            <div class="hero-ey">{vert['icon']} {vert['name']}</div>
-            <div class="hero-title">{vert['name']}</div>
-            <div class="hero-sub">{vert.get('respondents','')} respondents</div>
+        <div class="hero-gaming"><div class="hero-gaming-inner">
+            <div class="hero-gaming-badge">{vert['icon']} {vert['name']} Survey 2026</div>
+            <div class="hero-gaming-title">{vert['name']}</div>
+            <div class="hero-gaming-desc">{hero_desc}</div>
         </div></div>
         """, unsafe_allow_html=True)
 
+        st.markdown("")  # spacing
+
+        # Executive summary
         ex = vert.get("exec_summary", {})
         if ex:
             render_exec(ex)
-        st.markdown(f'<div class="body-text">{vert.get("summary","")}</div>', unsafe_allow_html=True)
+
         st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
+
+        # Section heading for charts
+        st.markdown(f'<div class="section-heading">{vert["name"]} insights</div>', unsafe_allow_html=True)
 
         for block in vert.get("blocks", []):
             render_block(block, vert["color"], prefix="pg_")
 
-        st.page_link(ALL_PAGES[0], label="← Back to Overview")
+        # Back to overview button
+        if st.button("← Back to Overview", type="primary", key="back_btn"):
+            st.switch_page(ALL_PAGES[0])
+
         render_footer()
     return page_fn
 
@@ -350,7 +404,8 @@ def make_coming_soon_page(vert):
         </div>
         """, unsafe_allow_html=True)
 
-        st.page_link(ALL_PAGES[0], label="← Back to Overview")
+        if st.button("← Back to Overview", type="primary", key="back_btn_cs"):
+            st.switch_page(ALL_PAGES[0])
         render_footer()
     return page_fn
 
