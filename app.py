@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 import json
 from pathlib import Path
 
-st.set_page_config(page_title="Media Report 2026 | Bain & Company", page_icon="🎮", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Media Report 2026 | Bain & Company", layout="wide", initial_sidebar_state="collapsed")
 
 PALETTE = ["#CC2936","#1B4965","#2D936C","#E07A2F","#7B2D8E","#6B46C1","#D4526E","#13A8BE"]
 PAD = "calc(max(24px, (100vw - 1100px) / 2))"
