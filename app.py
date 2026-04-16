@@ -371,9 +371,10 @@ def page_overview():
     render_card_row(0, 3)
     render_card_row(3, 6)
 
-    # Style as simple gray boxes
+    # Style cards as gray boxes, then override nav links back to normal
     st.markdown("""
     <style>
+    /* All page_links as gray boxes by default */
     a[data-testid="stPageLink-NavLink"] {
         background: #f5f5f5 !important;
         border: 1px solid #e0e0e0 !important;
@@ -398,6 +399,23 @@ def page_overview():
     }
     a[data-testid="stPageLink-NavLink"] svg {
         display: none !important;
+    }
+
+    /* Override: restore nav links to normal text style */
+    div[data-testid="stVerticalBlockBorderWrapper"]:first-child a[data-testid="stPageLink-NavLink"],
+    div[data-testid="stHorizontalBlock"]:first-of-type a[data-testid="stPageLink-NavLink"] {
+        background: transparent !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 14px 12px !important;
+        justify-content: flex-start !important;
+        box-shadow: none !important;
+    }
+    div[data-testid="stVerticalBlockBorderWrapper"]:first-child a[data-testid="stPageLink-NavLink"] p,
+    div[data-testid="stHorizontalBlock"]:first-of-type a[data-testid="stPageLink-NavLink"] p {
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        text-align: left !important;
     }
     </style>
     """, unsafe_allow_html=True)
