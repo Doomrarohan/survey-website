@@ -361,47 +361,53 @@ def page_overview():
     # Vertical cards as page_link buttons
     st.markdown('<div class="exec-label">Explore by vertical</div>', unsafe_allow_html=True)
 
-    # Row 1
-    row1 = st.columns(3)
-    for i in range(3):
-        v = verticals[i]
-        is_live = v.get("status") == "live"
-        status = f"✅ {v.get('respondents','')} respondents" if is_live else "🕐 Coming soon"
-        with row1[i]:
-            st.markdown(f"""
-            <div style="border:1px solid #e5e5e5;border-radius:10px;padding:20px 22px;background:#fff;
-                        border-top:4px solid {v['color']};min-height:160px;">
-                <div style="font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;display:inline-block;
-                            margin-bottom:8px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;
-                            {'background:#fef2f2;color:#CC2936' if is_live else 'background:#f0ebe0;color:#8a6d3b'}">{status}</div>
-                <div style="font-size:16px;font-weight:600;color:#1a1a1a;margin-bottom:6px;
-                            font-family:'Avenir Next','Avenir','Segoe UI',sans-serif">{v['name']}</div>
-                <div style="font-size:12px;color:#888;line-height:1.6;
-                            font-family:'Avenir Next','Avenir','Segoe UI',sans-serif">{v.get('card_desc','')}</div>
-            </div>
-            """, unsafe_allow_html=True)
-            st.page_link(ALL_PAGES[i+1], label=f"→ {v['name']}", use_container_width=True)
+    def render_card_row(start, end):
+        cols = st.columns(3)
+        for i in range(start, min(end, len(verticals))):
+            v = verticals[i]
+            is_live = v.get("status") == "live"
+            status = f"✅ {v.get('respondents','')} respondents" if is_live else "🕐 Coming soon"
+            label = f"**{v['name']}**  \n{v.get('card_desc','')}  \n{status}"
+            with cols[i - start]:
+                st.page_link(ALL_PAGES[i+1], label=label, use_container_width=True)
 
-    # Row 2
-    row2 = st.columns(3)
-    for i in range(3, 6):
-        v = verticals[i]
-        is_live = v.get("status") == "live"
-        status = f"✅ {v.get('respondents','')} respondents" if is_live else "🕐 Coming soon"
-        with row2[i-3]:
-            st.markdown(f"""
-            <div style="border:1px solid #e5e5e5;border-radius:10px;padding:20px 22px;background:#fff;
-                        border-top:4px solid {v['color']};min-height:160px;">
-                <div style="font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;display:inline-block;
-                            margin-bottom:8px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;
-                            {'background:#fef2f2;color:#CC2936' if is_live else 'background:#f0ebe0;color:#8a6d3b'}">{status}</div>
-                <div style="font-size:16px;font-weight:600;color:#1a1a1a;margin-bottom:6px;
-                            font-family:'Avenir Next','Avenir','Segoe UI',sans-serif">{v['name']}</div>
-                <div style="font-size:12px;color:#888;line-height:1.6;
-                            font-family:'Avenir Next','Avenir','Segoe UI',sans-serif">{v.get('card_desc','')}</div>
-            </div>
-            """, unsafe_allow_html=True)
-            st.page_link(ALL_PAGES[i+1], label=f"→ {v['name']}", use_container_width=True)
+    render_card_row(0, 3)
+    render_card_row(3, 6)
+
+    # Style page_links as cards
+    st.markdown("""
+    <style>
+    a[data-testid="stPageLink-NavLink"][href*="/gaming"],
+    a[data-testid="stPageLink-NavLink"][href*="/social"],
+    a[data-testid="stPageLink-NavLink"][href*="/streaming"],
+    a[data-testid="stPageLink-NavLink"][href*="/publishing"],
+    a[data-testid="stPageLink-NavLink"][href*="/advertising"],
+    a[data-testid="stPageLink-NavLink"][href*="/music"] {
+        border: 1px solid #e5e5e5 !important;
+        border-radius: 10px !important;
+        padding: 20px 22px !important;
+        background: #fff !important;
+        min-height: 140px !important;
+        transition: all 0.2s !important;
+        text-decoration: none !important;
+    }
+    a[data-testid="stPageLink-NavLink"][href*="/gaming"]:hover,
+    a[data-testid="stPageLink-NavLink"][href*="/social"]:hover,
+    a[data-testid="stPageLink-NavLink"][href*="/streaming"]:hover,
+    a[data-testid="stPageLink-NavLink"][href*="/publishing"]:hover,
+    a[data-testid="stPageLink-NavLink"][href*="/advertising"]:hover,
+    a[data-testid="stPageLink-NavLink"][href*="/music"]:hover {
+        box-shadow: 0 6px 24px rgba(0,0,0,0.07) !important;
+        transform: translateY(-2px);
+    }
+    a[data-testid="stPageLink-NavLink"][href*="/gaming"] { border-top: 4px solid #CC2936 !important; }
+    a[data-testid="stPageLink-NavLink"][href*="/social"] { border-top: 4px solid #1B4965 !important; }
+    a[data-testid="stPageLink-NavLink"][href*="/streaming"] { border-top: 4px solid #7B2D8E !important; }
+    a[data-testid="stPageLink-NavLink"][href*="/publishing"] { border-top: 4px solid #2D936C !important; }
+    a[data-testid="stPageLink-NavLink"][href*="/advertising"] { border-top: 4px solid #E07A2F !important; }
+    a[data-testid="stPageLink-NavLink"][href*="/music"] { border-top: 4px solid #6B46C1 !important; }
+    </style>
+    """, unsafe_allow_html=True)
 
     render_footer()
 
