@@ -180,11 +180,15 @@ if not check_password():
 
 verticals = DATA["verticals"]
 NAV_ITEMS = ["Overview"] + [v["name"] for v in verticals]
-if "page" not in st.session_state:
-    st.session_state.page = "Overview"
+
+# ── URL-BASED ROUTING (each page gets its own URL) ──
+params = st.query_params
+current = params.get("page", "Overview")
+if current not in NAV_ITEMS:
+    current = "Overview"
+
 def nav_to(page):
-    st.session_state.page = page
-current = st.session_state.page
+    st.query_params["page"] = page
 
 nav_links = ""
 for item in NAV_ITEMS:
@@ -203,7 +207,6 @@ for i, item in enumerate(NAV_ITEMS):
     with cols_nav[i]:
         if st.button(item, key=f"nb_{item}", use_container_width=True, type="secondary"):
             nav_to(item)
-            st.rerun()
 
 st.markdown("""
 <style>
@@ -288,7 +291,7 @@ if current == "Overview":
     <div class="hero-media">
         <div class="hero-media-inner">
             <div class="hero-media-ey">Media Report 2026</div>
-            <div class="hero-media-title">Bain Media survey</div>
+            <div class="hero-media-title">Media Report 2026</div>
             <div class="hero-media-desc">{DATA["description"]}</div>
         </div>
     </div>
@@ -332,7 +335,6 @@ if current == "Overview":
         with card_cols[i % 3]:
             if st.button(f"→ {v['name']}", key=f"cd_{v['id']}", use_container_width=True):
                 nav_to(v["name"])
-                st.rerun()
 
 
 # ══════════════════════════════════════════
@@ -372,7 +374,6 @@ elif current in [v["name"] for v in verticals]:
     with c2:
         if st.button("← Back to Overview", use_container_width=True, type="primary", key="back_btn"):
             nav_to("Overview")
-            st.rerun()
 
 st.markdown("""
 <div class="bain-footer"><p>Media Report 2026 &mdash; <a href="https://www.bain.com">Bain & Company</a> &mdash; Confidential</p></div>
