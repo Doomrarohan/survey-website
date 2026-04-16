@@ -306,10 +306,13 @@ def check_password():
     if st.session_state.authenticated:
         return True
     inject_css()
-    st.markdown("""
+    import base64
+    logo_path = Path(__file__).parent / "bain_logo.png"
+    logo_b64 = base64.b64encode(logo_path.read_bytes()).decode()
+    st.markdown(f"""
     <div style="min-height:80vh;display:flex;align-items:center;justify-content:center">
-        <div style="max-width:380px;text-align:center">
-            <div style="font-family:'Playfair Display',Georgia,serif;font-size:28px;font-weight:800;color:#CC2936;margin-bottom:4px">Bain & Company</div>
+        <div style="max-width:420px;text-align:center">
+            <img src="data:image/png;base64,{logo_b64}" style="height:32px;margin-bottom:20px;" alt="Bain & Company">
             <div style="width:40px;height:3px;background:#CC2936;margin:0 auto 20px;border-radius:2px"></div>
             <div style="font-size:14px;color:#666;margin-bottom:24px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif">Media Report 2026<br>Enter access code to continue</div>
         </div>
