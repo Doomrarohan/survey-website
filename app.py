@@ -365,47 +365,40 @@ def page_overview():
         cols = st.columns(3)
         for i in range(start, min(end, len(verticals))):
             v = verticals[i]
-            is_live = v.get("status") == "live"
-            status = f"✅ {v.get('respondents','')} respondents" if is_live else "🕐 Coming soon"
-            label = f"**{v['name']}**  \n{v.get('card_desc','')}  \n{status}"
             with cols[i - start]:
-                st.page_link(ALL_PAGES[i+1], label=label, use_container_width=True)
+                st.page_link(ALL_PAGES[i+1], label=v['name'], use_container_width=True)
 
     render_card_row(0, 3)
     render_card_row(3, 6)
 
-    # Style page_links as cards
+    # Style as simple gray boxes
     st.markdown("""
     <style>
-    a[data-testid="stPageLink-NavLink"][href*="/gaming"],
-    a[data-testid="stPageLink-NavLink"][href*="/social"],
-    a[data-testid="stPageLink-NavLink"][href*="/streaming"],
-    a[data-testid="stPageLink-NavLink"][href*="/publishing"],
-    a[data-testid="stPageLink-NavLink"][href*="/advertising"],
-    a[data-testid="stPageLink-NavLink"][href*="/music"] {
-        border: 1px solid #e5e5e5 !important;
-        border-radius: 10px !important;
-        padding: 20px 22px !important;
-        background: #fff !important;
-        min-height: 140px !important;
-        transition: all 0.2s !important;
+    a[data-testid="stPageLink-NavLink"] {
+        background: #f5f5f5 !important;
+        border: 1px solid #e0e0e0 !important;
+        border-radius: 8px !important;
+        padding: 28px 20px !important;
         text-decoration: none !important;
+        transition: all 0.2s !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
-    a[data-testid="stPageLink-NavLink"][href*="/gaming"]:hover,
-    a[data-testid="stPageLink-NavLink"][href*="/social"]:hover,
-    a[data-testid="stPageLink-NavLink"][href*="/streaming"]:hover,
-    a[data-testid="stPageLink-NavLink"][href*="/publishing"]:hover,
-    a[data-testid="stPageLink-NavLink"][href*="/advertising"]:hover,
-    a[data-testid="stPageLink-NavLink"][href*="/music"]:hover {
-        box-shadow: 0 6px 24px rgba(0,0,0,0.07) !important;
-        transform: translateY(-2px);
+    a[data-testid="stPageLink-NavLink"]:hover {
+        background: #eee !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
     }
-    a[data-testid="stPageLink-NavLink"][href*="/gaming"] { border-top: 4px solid #CC2936 !important; }
-    a[data-testid="stPageLink-NavLink"][href*="/social"] { border-top: 4px solid #1B4965 !important; }
-    a[data-testid="stPageLink-NavLink"][href*="/streaming"] { border-top: 4px solid #7B2D8E !important; }
-    a[data-testid="stPageLink-NavLink"][href*="/publishing"] { border-top: 4px solid #2D936C !important; }
-    a[data-testid="stPageLink-NavLink"][href*="/advertising"] { border-top: 4px solid #E07A2F !important; }
-    a[data-testid="stPageLink-NavLink"][href*="/music"] { border-top: 4px solid #6B46C1 !important; }
+    a[data-testid="stPageLink-NavLink"] p {
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        color: #1a1a1a !important;
+        font-family: 'Avenir Next','Avenir','Segoe UI',sans-serif !important;
+        text-align: center !important;
+    }
+    a[data-testid="stPageLink-NavLink"] svg {
+        display: none !important;
+    }
     </style>
     """, unsafe_allow_html=True)
 
