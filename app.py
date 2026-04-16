@@ -215,7 +215,7 @@ def render_nav(all_pages):
     cols = st.columns(len(all_pages) + 1)
     for i, pg in enumerate(all_pages):
         with cols[i]:
-            st.page_link(pg, label=pg.title, icon=getattr(pg, 'icon', None))
+            st.page_link(pg, label=pg.title)
     with cols[-1]:
         st.markdown('<div style="text-align:right;font-size:11px;color:#999;padding:14px 0;font-family:Avenir Next,Avenir,Segoe UI,sans-serif"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#2D936C;margin-right:5px;vertical-align:middle"></span>Authenticated</div>', unsafe_allow_html=True)
 
