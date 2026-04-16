@@ -322,21 +322,14 @@ def page_overview():
         is_live = v.get("status") == "live"
         sc = "status-live" if is_live else "status-soon"
         st_text = f'{v.get("respondents","")} respondents' if is_live else "Coming soon"
-        chtml += f'''<div class="vert-card">
+        chtml += f'''<a href="/{v['id']}" style="text-decoration:none;color:inherit;"><div class="vert-card">
             <div class="vert-card-bar" style="background:{v['color']}"></div>
             <div class="vert-card-status {sc}">{st_text}</div>
             <span class="vert-card-icon">{v['icon']}</span>
             <div class="vert-card-name">{v['name']}</div>
             <div class="vert-card-desc">{v.get('card_desc','')}</div>
-        </div>'''
+        </div></a>'''
     st.markdown(chtml + '</div>', unsafe_allow_html=True)
-
-    # Card click buttons
-    card_cols = st.columns(3)
-    for i, v in enumerate(verticals):
-        with card_cols[i % 3]:
-            slug = v["id"]
-            st.link_button(f"→ {v['name']}", f"/{slug}", use_container_width=True)
 
     render_footer()
 
