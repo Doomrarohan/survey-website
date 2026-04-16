@@ -264,12 +264,31 @@ def render_exec(ex):
 
 def render_nav(all_pages):
     """Render navbar using st.page_link for proper internal navigation."""
+    short_names = {
+        "Streaming & OTT": "Streaming",
+        "Publishing & Print": "Publishing",
+        "Advertising & Adtech": "Advertising",
+        "Music & Audio": "Music",
+    }
     cols = st.columns(len(all_pages) + 1)
     for i, pg in enumerate(all_pages):
         with cols[i]:
-            st.page_link(pg, label=pg.title)
+            label = short_names.get(pg.title, pg.title)
+            st.page_link(pg, label=label)
     with cols[-1]:
-        st.markdown('<div style="text-align:right;font-size:11px;color:#999;padding:14px 0;font-family:Avenir Next,Avenir,Segoe UI,sans-serif"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#2D936C;margin-right:5px;vertical-align:middle"></span>Authenticated</div>', unsafe_allow_html=True)
+        st.markdown('<div style="text-align:right;font-size:11px;color:#999;padding:14px 0;font-family:Avenir Next,Avenir,Segoe UI,sans-serif;white-space:nowrap"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#2D936C;margin-right:5px;vertical-align:middle"></span>Authenticated</div>', unsafe_allow_html=True)
+
+    # Ensure nav links don't truncate
+    st.markdown("""
+    <style>
+    div[data-testid="stHorizontalBlock"]:first-of-type a[data-testid="stPageLink-NavLink"] p {
+        white-space: nowrap !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+        font-size: 13px !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
 
 def render_footer():
@@ -339,42 +358,47 @@ def page_overview():
     # Vertical cards as page_link buttons
     st.markdown('<div class="exec-label">Explore by vertical</div>', unsafe_allow_html=True)
 
-    # Render clean HTML cards
-    chtml = '<div class="vert-cards">'
-    for v in verticals:
-        is_live = v.get("status") == "live"
-        sc = "status-live" if is_live else "status-soon"
-        st_text = f'{v.get("respondents","")} respondents' if is_live else "Coming soon"
-        chtml += f'''<div class="vert-card">
-            <div class="vert-card-bar" style="background:{v['color']}"></div>
-            <div class="vert-card-status {sc}">{st_text}</div>
-            <div class="vert-card-name">{v['name']}</div>
-            <div class="vert-card-desc">{v.get('card_desc','')}</div>
-        </div>'''
-    chtml += '</div>'
-    st.markdown(chtml, unsafe_allow_html=True)
-
-    # Invisible buttons overlaying the cards for navigation
+    # Row 1
     row1 = st.columns(3)
-    row2 = st.columns(3)
-    for i, pg in enumerate(ALL_PAGES[1:]):
-        col = row1[i] if i < 3 else row2[i - 3]
-        with col:
-            if st.button(verticals[i]["name"], key=f"card_{verticals[i]['id']}", use_container_width=True, type="secondary"):
-                st.switch_page(pg)
+    for i in range(3):
+        v = verticals[i]
+        is_live = v.get("status") == "live"
+        status = f"✅ {v.get('respondents','')} respondents" if is_live else "🕐 Coming soon"
+        with row1[i]:
+            st.markdown(f"""
+            <div style="border:1px solid #e5e5e5;border-radius:10px;padding:20px 22px;background:#fff;
+                        border-top:4px solid {v['color']};min-height:160px;">
+                <div style="font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;display:inline-block;
+                            margin-bottom:8px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;
+                            {'background:#fef2f2;color:#CC2936' if is_live else 'background:#f0ebe0;color:#8a6d3b'}">{status}</div>
+                <div style="font-size:16px;font-weight:600;color:#1a1a1a;margin-bottom:6px;
+                            font-family:'Avenir Next','Avenir','Segoe UI',sans-serif">{v['name']}</div>
+                <div style="font-size:12px;color:#888;line-height:1.6;
+                            font-family:'Avenir Next','Avenir','Segoe UI',sans-serif">{v.get('card_desc','')}</div>
+            </div>
+            """, unsafe_allow_html=True)
+            st.page_link(ALL_PAGES[i+1], label=f"→ {v['name']}", use_container_width=True)
 
-    # Hide the card overlay buttons visually
-    st.markdown("""
-    <style>
-    div[data-testid="stHorizontalBlock"]:has(button[kind="secondary"]):not(:first-of-type) {
-        margin-top: -90px;
-        position: relative;
-        z-index: 10;
-        opacity: 0;
-        height: 80px;
-    }
-    </style>
-    """, unsafe_allow_html=True)
+    # Row 2
+    row2 = st.columns(3)
+    for i in range(3, 6):
+        v = verticals[i]
+        is_live = v.get("status") == "live"
+        status = f"✅ {v.get('respondents','')} respondents" if is_live else "🕐 Coming soon"
+        with row2[i-3]:
+            st.markdown(f"""
+            <div style="border:1px solid #e5e5e5;border-radius:10px;padding:20px 22px;background:#fff;
+                        border-top:4px solid {v['color']};min-height:160px;">
+                <div style="font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;display:inline-block;
+                            margin-bottom:8px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;
+                            {'background:#fef2f2;color:#CC2936' if is_live else 'background:#f0ebe0;color:#8a6d3b'}">{status}</div>
+                <div style="font-size:16px;font-weight:600;color:#1a1a1a;margin-bottom:6px;
+                            font-family:'Avenir Next','Avenir','Segoe UI',sans-serif">{v['name']}</div>
+                <div style="font-size:12px;color:#888;line-height:1.6;
+                            font-family:'Avenir Next','Avenir','Segoe UI',sans-serif">{v.get('card_desc','')}</div>
+            </div>
+            """, unsafe_allow_html=True)
+            st.page_link(ALL_PAGES[i+1], label=f"→ {v['name']}", use_container_width=True)
 
     render_footer()
 
