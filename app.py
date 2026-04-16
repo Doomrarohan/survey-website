@@ -150,6 +150,16 @@ def inject_css():
     .insight{{border-left:3px solid #CC2936;padding:10px 14px;background:#fafafa;border-radius:0 8px 8px 0;font-size:13px;color:#333;line-height:1.6;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
     .body-text{{font-size:15px;color:#444;line-height:1.8;margin-bottom:28px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif;max-width:800px}}
 
+    .vert-cards{{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:12px}}
+    .vert-card{{border:1px solid #e5e5e5;border-radius:10px;padding:22px 22px 18px;background:#fff;position:relative;overflow:hidden;transition:all .2s;cursor:pointer}}
+    .vert-card:hover{{box-shadow:0 6px 24px rgba(0,0,0,.07);transform:translateY(-2px)}}
+    .vert-card-bar{{position:absolute;top:0;left:0;right:0;height:4px}}
+    .vert-card-name{{font-size:16px;font-weight:600;color:#1a1a1a;margin-bottom:6px;margin-top:8px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
+    .vert-card-desc{{font-size:12px;color:#888;line-height:1.6;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
+    .vert-card-status{{font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:4px;font-family:'Avenir Next','Avenir','Segoe UI',sans-serif}}
+    .status-live{{background:#fef2f2;color:#CC2936}}
+    .status-soon{{background:#f0ebe0;color:#8a6d3b}}
+
     .block-card{{border:1px solid #e5e5e5;border-radius:10px;padding:20px 22px;background:#fff;position:relative;margin-bottom:20px}}
     .block-card:hover{{box-shadow:0 3px 14px rgba(0,0,0,.04)}}
     .block-bar{{position:absolute;left:0;top:20px;bottom:20px;width:4px;border-radius:2px}}
@@ -177,7 +187,7 @@ def inject_css():
     .bain-footer a{{color:#CC2936;text-decoration:none}}
 
     @media(max-width:1200px){{.hero-full,.hero-media,.bain-footer{{padding-left:24px;padding-right:24px}}}}
-    @media(max-width:768px){{.kpi-grid{{grid-template-columns:1fr 1fr}}.insights-grid{{grid-template-columns:1fr}}}}
+    @media(max-width:768px){{.kpi-grid{{grid-template-columns:1fr 1fr}}.insights-grid,.vert-cards{{grid-template-columns:1fr}}}}
     </style>
     """, unsafe_allow_html=True)
 
@@ -328,16 +338,43 @@ def page_overview():
 
     # Vertical cards as page_link buttons
     st.markdown('<div class="exec-label">Explore by vertical</div>', unsafe_allow_html=True)
+
+    # Render clean HTML cards
+    chtml = '<div class="vert-cards">'
+    for v in verticals:
+        is_live = v.get("status") == "live"
+        sc = "status-live" if is_live else "status-soon"
+        st_text = f'{v.get("respondents","")} respondents' if is_live else "Coming soon"
+        chtml += f'''<div class="vert-card">
+            <div class="vert-card-bar" style="background:{v['color']}"></div>
+            <div class="vert-card-status {sc}">{st_text}</div>
+            <div class="vert-card-name">{v['name']}</div>
+            <div class="vert-card-desc">{v.get('card_desc','')}</div>
+        </div>'''
+    chtml += '</div>'
+    st.markdown(chtml, unsafe_allow_html=True)
+
+    # Invisible buttons overlaying the cards for navigation
     row1 = st.columns(3)
     row2 = st.columns(3)
-    for i, pg in enumerate(ALL_PAGES[1:]):  # skip overview
-        v = verticals[i]
-        is_live = v.get("status") == "live"
-        status = f"✅ {v.get('respondents','')} respondents" if is_live else "🔜 Coming soon"
-        label = f"{v['icon']} **{v['name']}**\n\n{v.get('card_desc','')}\n\n{status}"
+    for i, pg in enumerate(ALL_PAGES[1:]):
         col = row1[i] if i < 3 else row2[i - 3]
         with col:
-            st.page_link(pg, label=label, use_container_width=True)
+            if st.button(verticals[i]["name"], key=f"card_{verticals[i]['id']}", use_container_width=True, type="secondary"):
+                st.switch_page(pg)
+
+    # Hide the card overlay buttons visually
+    st.markdown("""
+    <style>
+    div[data-testid="stHorizontalBlock"]:has(button[kind="secondary"]):not(:first-of-type) {
+        margin-top: -90px;
+        position: relative;
+        z-index: 10;
+        opacity: 0;
+        height: 80px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
     render_footer()
 
